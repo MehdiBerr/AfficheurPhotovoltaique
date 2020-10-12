@@ -13,7 +13,8 @@ Hugo Pietri
 
 Ce projet a pour but la réalisation d'un dispositif de mesure de la production électrique et de la vitesse de rotation d'une éolienne de particulier, avec afficheur et interface web.
 
-Il y a plusieurs modèles d’éoliennes qui ont des courants allant jusqu’à 20 A et des tensions jusqu’à 40 V *(pas exact à modifier)*
+Il y a plusieurs modèles d’éoliennes qui ont des tensions allant de 12 V à 350 V et des puissances pouvant atteindre 2000 W pour la plus grande éolienne (4 m 20 de diamètre). Nous n'adapterons pas notre éolienne pour la version haute tension 350 V ni pour la version 12 V qui délivre directement une tension continue.
+Les courants maximums mis en jeux vont de 4 A pour la plus petite éolienne en 48 V à plus de 80 A pour la plus grande en 24 V.
 
 La mesure de vitesse de rotation doit se faire en exploitant le signal triphasé sortant directement de l’éolienne. La mesure de tension et de courant (permettant d’en déduire la fréquence) se fait après le module redresseur de tension, donc en signal continu. 
 
