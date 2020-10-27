@@ -49,3 +49,11 @@ Le système doit être autonome et alimenté directement par l’éolienne (donc
 | FC2-5                                                | Adaptable sur toute la game d'éoliennes de différentes puissances                                                                                  | Maximiser la précision de mesure dans chaque cas |                                    |  
 | FC3                                                  | Coût du dispositif                                                                                                                                 | accessible                                       | moins de 50 €                      |  
 | FC5                                                  | Respect du temps imparti pour la réalisation                                                                                                       | contrainte imposée par les enseignants           | Avant mi-janvier                   |  
+
+
+
+
+## Circuit et PCB
+
+Le circuit électrique du dispositif est disponible ici : https://easyeda.com/Hupigotri/compteur_eolienne
+
