@@ -14,6 +14,7 @@ Hugo Pietri
 Ce projet a pour but la réalisation d'un dispositif de mesure de la production électrique et de la vitesse de rotation d'une éolienne de particulier, avec afficheur et interface web.
 
 Le projet doit s'adapter aux éoliennes du réseau français Tripalium : https://www.tripalium.org/
+
 Lui-même basé sur le réseau Windempowerment : https://windempowerment.com/
 
 Il y a plusieurs modèles d’éoliennes qui ont des tensions allant de 12 V à 350 V et des puissances pouvant atteindre 2000 W pour la plus grande éolienne (4 m 20 de diamètre). Nous n'adapterons pas notre éolienne pour la version haute tension 350 V ni pour la version 12 V qui délivre directement une tension continue.
