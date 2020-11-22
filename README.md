@@ -7,7 +7,7 @@ Emre KORKMAZ
 
 Leon PEYRAT
 
-Hugo Pietri
+Hugo PIETRI
 
 ## Introduction
 
