@@ -61,3 +61,56 @@ Le système doit être autonome et alimenté directement par l’éolienne (donc
 
 Le circuit électrique du dispositif est disponible ici : https://easyeda.com/Hupigotri/compteur_eolienne
 
+
+
+## Choix et dimensionnement des composants
+
+### L’amplificateur d’isolement AMC1200
+
+L’amplificateur d’isolement AMC1200 supporte au maximum une tension d’entrée crête à crête de 250 mV. 
+On effectue un pont diviseur pour obtenir cette tension lorsque la tension max de l’éolienne est présente en entrée (lorsque les batteries sont quasiment chargées), soit 4×14,5 V=58 V+2 V de marge, donc 60 V redressé. Ces 60 V redressés correspondent à 60 ×√2 crête-à-crête, et 60×√2×√3=147 V pour la tension composée (entre 2 phases) crête-à crête. 
+On calcule le rapport des résistances du PDT : (tension éolienne composée càc)/(tension entrée AOP)=147/0,250=588
+On choisit R9=180 kΩ  et R20=300 Ω  
+En plus de leur rapport, on fait attention à 2 points :
+	R20 ≪ résistance entrée AMC1200 =28 kΩ 
+	R9+R20 pas trop faible pour limiter la dissipation thermique (P_max=0,1 W pour les CMS R0603)
+
+
+AMC1200 alimenté en 3,3 V, sa sortie oscille autour de 1,27 V avec une amplitude proportionnelle à la tension en entrée. 
+
+
+
+### AOP TLV225 (mesure fréquence)
+
+L’AOP TLV225 est monté en Bascule de Schmitt non inverseuse. 
+Les 2 résistances (R21 + R34) et R32 sont un pdt permettant de définir la tension de seuil moyenne. Les 2 autres résistances (R23 + R33) et R22 permettent de fixer les seuils inférieurs et supérieurs de basculement. 
+Cette tension est un compromis entre des seuils très différents pour éviter des erreurs dus à des parasites ou au bruit, et des seuils proches permettant de mesurer la fréquence même lorsque l’éolienne tourne très lentement et sa tension de sortie est faible. 
+
+#### Compromis parasites :
+Si l’on choisit des résistances (R23 + R33) et R22 avec un rapport 40 (1kΩ  et 40kΩ), on a une différence de seuil haut et bas de 0,08 V en sortie de l’AOP alimenté en 3,3V. Soit un rapport de tensions de  60/3.3≈20 , donc 0,08×20=1,6 V de variations sur la tension d’entrée. Si les parasites sont inférieurs à cette valeur, la mesure de fréquence ne sera pas faussée. 
+
+
+#### Compromis limite minimale de mesure de fréquence :
+On reprend les mêmes résistances (R23 + R33) et R22 avec un rapport 40 (1kΩ et 40kΩ), on se rappelle de la différence entre seuil haut et bas de 0,08 V, on peut donc mesurer une sinusoïde qui a cette valeur crête à crête au minimum. Avec une simple règle de 3, on calcule la tension correspondante en entrée de l’AOP : (0,08×0,250)/3,3=6,06 mV 
+On utilise le rapport des résistances du PDT calculé plus haut pour déterminer la tension min nécessaire à la mesure de fréquence : 6,06∙10^(-3)×588=3,56 V
+Grâce aux valeurs des vitesses de démarrage de charge du livre page 86, on peut déterminer leur vitesse de rotation pour atteindre cette tension.
+Éolienne 24 V et 1m20 : (300×3,56)/24=44,5 tr/min ou 0,74 Hz
+Éolienne 48 V et 4m20 : (120×3,56)/48=8,9 tr/min ou 0,15 Hz
+
+
+### AOP TLV225 (mesure tension)
+
+
+On effectue un simple pont diviseur sur la tension redressée pour avoir une image de la tension en entrée de l’AOP. 
+Cet AOP est utilisé pour prévenir du risque de détruire l’ESP : si la sortie du pont était directement reliée sur le CAN de l’ESP, une surtension sur l’entrée ferait monter la tension en entrée du CAN au-dessus de 3,3 V. 
+Avec l’AOP entre les 2, ce n’est plus un problème : l’AOP peut supporter des tensions d’entrées supérieures, et étant alimenté en 3,3 V, sa sortie peut saturer mais ne dépassera jamais cette valeur ce qui évite d’endommager l’ESP.
+
+
+On dimensionne à nouveau le pdt pour une tension max de 60 V : 
+On choisit un gain du montage non inverseur de 1+R17/R16=1+10/10=2
+Dans ce cas si on veut 3,3 V en sortie au maximum, il nous faut 3,3/2=1,65 V maximum en entrée de l’AOP. 
+Le PDT doit donc avoir un rapport min de 60/1,65=36,36 
+On choisit 100 kΩ et 2,7 kΩ (rapport de 37,03)
+
+
+
