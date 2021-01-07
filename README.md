@@ -115,4 +115,50 @@ Le PDT doit donc avoir un rapport min de 60/1,65=36,36
 On choisit 100 kΩ et 2,7 kΩ (rapport de 37,03)
 
 
+#### Capteur à effet Hall CSM015SPT5 (mesure courant)
+
+
+
+
+
+### Composants pour l'alimentation (Buck 5V)
+
+On veut un buck acceptant une tension d'entrée allant jusqu'à 60 V. Pour cela il y a des contrôleurs pour buck particuliers. C'est le cas du LM296HV que nous avons choisi d'utiliser. 
+
+Ce choix a été fait car c'est le composant présent sur la carte suivante et qu'il fonctionnait parfaitement lors des tests :
+https://www.aliexpress.com/item/32842453339.html?
+
+Les condensateurs situés en entrée et sortie doivent aussi supporter les tensions maximales à l'entrée et à la sortie respectivement. 
+Le choix plus complexe a été celui de l'inductance du circuit
+
+
+A DETAILLER
+
+
+
+
+### Composants pour la gestion de charge de la batterie
+
+Pour ce bloc fonctionnel on s'est grandement inspiré de deux exemples de circuits de gestion de batterie très similaires :
+Celui de GreatScott : https://www.instructables.com/DIY-LiPo-ChargeProtect5V-Boost-Circuit/
+Celui d'électronoob : https://electronoobs.com/eng_circuitos_tut49.php
+
+Le seul composant à modifier en fonction de l'utilisation est la résistance placée entre le pin "PROG" du TP4056 et la masse. En effet cette résistance permet de régler le courant de charge de la batterie. On a choisi une résistance de 2 kΩ ce qui définit un courant de charge de 580 mA. Les batteries li-ion 18650 que l'on utilise peuvent-être endommagées avec un courant plus élevé. Si l'on souhaite doubler l'autonomie, on peut placer 2 batteries en parallèle, et dans ce cas on peut aussi doubler le courant de charge. Il faut cependant veiller à ce que l'alimentation (le buck 5V et l'alimentation USB) puisse délivrer le courant nécessaire.
+
+La partie Boost 5V présente dans ces deux circuits n'a pas été concervée car les composants nécessitant une alimentation 5V que nous utilisons sont directement reliés à la sortie 5V du Buck sur la carte. Le 5V n'est donc présent que lorsque l'éolienne tourne, mais ce n'est pas un problème puisque seul le  capteur de courant fonctionne en 5V, et le courant est nul lorsque l'éolienne est à l'arrêt. 
+
+
+### Microcontrôleur (ESP32)
+
+Le choix du microcontrôleur s'est porté sur un ESP-WROOM-32U. 
+Il est en effet largement utilisé dans l'industrie et facile à programmer. 
+Nous l'avons préféré par rapport à un ESP8266 car il est plus rapide, dispose de plus de GPIO, supporte plus d'interruptions et dispose de plus d'entrées analogiques. Il est donc moins restrictif quant à une amélioration future de la carte nécessitant plus de ressources.
+
+Dans sa version 32U, il dispose d'un connecteur IPEX permettant de lui attacher une antenne externe. Cela permet d'améliorer la portée WIFI de l'ESP32, notamment en choisissant une antenne à fort gain et en la placant judicieusement.
+
+
+
+
+
+
 
