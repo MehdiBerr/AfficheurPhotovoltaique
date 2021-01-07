@@ -62,6 +62,22 @@ Le système doit être autonome et alimenté directement par l’éolienne (donc
 Le circuit électrique du dispositif est disponible ici : https://easyeda.com/Hupigotri/compteur_eolienne
 
 
+## Détails pour la réplication du projet
+
+Le circuit et les documents associés sont disponibles en open source et peuvent-être répliqués ou réutilisés sans contraintes.
+
+
+### Versions de la carte
+
+#### Version 1.0
+
+##### Réglage de la carte
+
+##### Erreurs de conception
+
+#### Version 1.1 ?
+
+
 
 ## Choix et dimensionnement des composants
 
@@ -140,7 +156,9 @@ A DETAILLER
 ### Composants pour la gestion de charge de la batterie
 
 Pour ce bloc fonctionnel on s'est grandement inspiré de deux exemples de circuits de gestion de batterie très similaires :
+
 Celui de GreatScott : https://www.instructables.com/DIY-LiPo-ChargeProtect5V-Boost-Circuit/
+
 Celui d'électronoob : https://electronoobs.com/eng_circuitos_tut49.php
 
 Le seul composant à modifier en fonction de l'utilisation est la résistance placée entre le pin "PROG" du TP4056 et la masse. En effet cette résistance permet de régler le courant de charge de la batterie. On a choisi une résistance de 2 kΩ ce qui définit un courant de charge de 580 mA. Les batteries li-ion 18650 que l'on utilise peuvent-être endommagées avec un courant plus élevé. Si l'on souhaite doubler l'autonomie, on peut placer 2 batteries en parallèle, et dans ce cas on peut aussi doubler le courant de charge. Il faut cependant veiller à ce que l'alimentation (le buck 5V et l'alimentation USB) puisse délivrer le courant nécessaire.
@@ -152,7 +170,7 @@ La partie Boost 5V présente dans ces deux circuits n'a pas été concervée car
 
 Le choix du microcontrôleur s'est porté sur un ESP-WROOM-32U. 
 Il est en effet largement utilisé dans l'industrie et facile à programmer. 
-Nous l'avons préféré par rapport à un ESP8266 car il est plus rapide, dispose de plus de GPIO, supporte plus d'interruptions et dispose de plus d'entrées analogiques. Il est donc moins restrictif quant à une amélioration future de la carte nécessitant plus de ressources.
+Nous l'avons préféré par rapport à un ESP8266 car il est plus rapide, dispose de plus de GPIO, supporte plus d'interruptions et dispose de plus d'entrées analogiques. Il est donc moins restrictif quant à une amélioration future de la carte nécessitant plus de ressources et périphériques.
 
 Dans sa version 32U, il dispose d'un connecteur IPEX permettant de lui attacher une antenne externe. Cela permet d'améliorer la portée WIFI de l'ESP32, notamment en choisissant une antenne à fort gain et en la placant judicieusement.
 
