@@ -112,6 +112,13 @@ Ensuite revenez sur le potentiomètre R33 qui permet de fixer les seuils inféri
 
 ##### IV.1.a.2-Erreurs de conception
 
+-	Le 5 V de sortie du buck n’est pas relié à l’entrée 5 V du capteur de courant, il est nécessaire de souder un fil en externe entre la pin « chargein5v » du contrôleur de charge U1 et le pad 5V de la résistance R25. 
+-	Un problème de conversion de tension est présent entre le capteur de courant et l’ESP ce qui limite le courant mesurable à seulement 56 % du courant nominal maximum du capteur de courant (8,5 A dans le cas du capteur 15 A)
+-	L’interrupteur de sélection de l’alimentation est inversé : sur la position « éolienne » la carte est alimentée par USB, et inversement.
+-	Les potentiomètres sont câblés en inverse, donc lorsque l’on visse la résistance augmente pour l’un et diminue pour l’autre ce qui peut porter à confusion.
+-	Pour la sortie vers un éventuel vu-mêtre basé sur des LEDS WS2812, le 5 V n’est pas présent en plus des pin de masse, VCC et GPIO19.
+
+
 #### IV.1.b-Version 1.1 
 
 Une nouvelle version de la carte qui corrige toutes les erreurs de conception citées ci-dessus est disponible au lien suivant (même lien que celui indiqué au début du GitHub) : 
