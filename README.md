@@ -27,6 +27,37 @@ On doit indiquer les mesures sur des afficheurs dont l’un visuel et didactique
 Le système doit être autonome et alimenté directement par l’éolienne (donc nécessité d’une batterie pour l’alimenter en l’absence de vent)
 
 
+Fonctionnement global de la carte :
+
+Partie puissance (alimentation des composants et batterie) :
+
+ 
+
+La carte peut être alimentée de 2 manières : soit par un connecteur micro-USB, soit directement par la tension redressée générée par l’éolienne. Le choix d’alimentation est à effectuer au moyen d’un interrupteur. 
+Dans le cas de l’alimentation par l’éolienne, la tension d’entrée est abaissée et régulée à 5 V par un circuit BUCK. Celui-ci accepte en entrée des tensions allant de 6 à 60 V, ce qui lui permet de fonctionner correctement avec les éoliennes 24 et 48 V, et de fournir 5 V même pour des vitesses de rotation de l’éolienne faibles.
+
+Les 5 V en sortie de ce BUCK permettent d’alimenter le circuit de charge de la batterie, le capteur de courant, et l’éventuel vu-mêtre externe.
+
+Comme son nom l’indique, le circuit de charge et protection batterie permet de gérer la charge de la batterie et lui assurer une protection contre les décharges profondes. 
+
+Le régulateur 3,3V a pour objectif de fournir une tension stable pour les composants nécessitant cette tension d’alimentation. C’est le cas de l’ESP32 ou de certains circuits intégrés. 
+
+Partie mesures :
+
+La carte est capable de mesurer 3 grandeurs physiques : la tension et le courant en continu, ainsi que la vitesse de rotation de l’éolienne.
+
+La mesure de tension est effectuée par un AOP monté en non inverseur associé à un pont diviseur de tension. La tension est directement prélevée sur le bornier d’alimentation de la carte.
+
+La mesure de courant utilise un capteur à effet Hall dans lequel on fait passer un fil traversé par le courant à mesurer. Il existe plusieurs modèles de ce capteur destinés à mesurer des courants maximums allant de 5 à 50 A. Ce capteur fonctionnant en 5 V et pas en 3,3 V comme l’ESP, on passe par l’intermédiaire d’un circuit d’adaptation de tension.
+
+La mesure de vitesse de rotation est une mesure de fréquence : elle est effectuée sur le signal alternatif en sortie de l’éolienne et entre 2 phases. 
+Un bornier présent sur la carte permet de les connecter. Le signal sinusoïdal est d’abord réduit en tension par un pont diviseur, il passe ensuite par un amplificateur d’isolement pour éviter que des surtensions endommagent la carte, puis un AOP monté en bascule de Schmitt non inverseuse permet de le transformer en signal carré plus facilement traitable par l’ESP.
+
+
+Partie affichage :
+
+Les mesures sont affichées sur un site web en local. Pour y accéder, il faut d’abord indiquer dans la zone code prévue à cet effet le nom du réseau WIFI ainsi que le mot de passe pour s’y connecter. 
+Une fois le programme téléversé, ouvrez le moniteur série, l’adresse IP de la page web à rentrer dans le navigateur devrait être affichée.
 
 ## II-Cahier des charges
 
@@ -64,15 +95,28 @@ Le circuit électrique du dispositif est disponible ici : https://easyeda.com/Hu
 Le circuit et les documents associés sont disponibles en open source et peuvent-être répliqués ou réutilisés sans contraintes.
 
 
+
 ### IV.1-Versions de la carte
 
 #### IV.1.a-Version 1.0
 
+Lien du circuit de cette ancienne version : https://easyeda.com/Hupigotri/compteur_eolienne_copy
+
+
 ##### IV.1.a.1-Réglage de la carte
+
+Une fois tous les composants placés sur la carte, il faut régler les 2 potentiomètres. Il est nécessaire de disposer d’un oscilloscope pour cette opération connecté entre la masse et le GPIO 32 de l’ESP. Pour cela, dévissez complètement le potentiomètre n°R33 ce qui a pour effet de mettre sa valeur à son maximum (100 kΩ) et d’annuler la fonction d’hystérésis (seuil basculement haut = seuil basculement bas). 
+Ensuite balayez toute la plage de résistance avec le potentiomètre R34 jusqu’à obtenir un signal carré, puis ajustez le pour se rapprocher le plus possible d’un signal de rapport cyclique 0,5. La tension de seuil moyenne a bien été définie.
+Ensuite revenez sur le potentiomètre R33 qui permet de fixer les seuils inférieurs et supérieurs de basculement. Cette valeur est un compromis entre des seuils très différents pour éviter des erreurs dus à des parasites ou au bruit, et des seuils proches permettant de mesurer la fréquence même lorsque l’éolienne tourne très lentement et sa tension de sortie est faible. Donc les résultats de mesure de fréquence sont erronés, vissez ce potentiomètre jusqu’à obtenir des valeurs cohérentes, et vissez quelques tours de plus afin de garantir une marge de sécurité.
+
 
 ##### IV.1.a.2-Erreurs de conception
 
-#### IV.1.b-Version 1.1 ?
+#### IV.1.b-Version 1.1 
+
+Une nouvelle version de la carte qui corrige toutes les erreurs de conception citées ci-dessus est disponible au lien suivant (même lien que celui indiqué au début du GitHub) : 
+https://easyeda.com/Hupigotri/compteur_eolienne
+
 
 
 
@@ -187,6 +231,51 @@ Dans sa version 32U, il dispose d'un connecteur IPEX permettant de lui attacher 
 
 
 
+##   VI-Explications du code
+
+Ce code a été développé sous un environnement arduino. Pour s’assurer son bon fonctionnement, vous devez télécharger les librairies arduino compatibles avec l’Esp32. Le lien suivant vous guidera pour votre installation : https://projetsdiy.fr/installer-esp-idf-esp32-ide-arduino-macos-windows-raspberry/
+
+
+###   VI.1-Code pour le capteur de tension
+
+Nous avons relié le capteur de tension au pin numéro 34 de notre microcontrôleur. Ainsi, la tension mesurée, qui varie entre 0 et 3.3V arrive par ce pin. Nous le configurons comme une entrée pour l’esp. L’esp va convertir, via un convertisseur analogique-numérique, cette tension en une valeur allant de 0 à 4096. Les valeurs ici sont binaires et chaque état de tension correspond à un bit. Le 4096 correspond à la valeur maximale de tension fournit par l’éolienne et la 0 à la valeur minimale. Ensuite, nous reconvertissons les valeurs binaires pour arriver à la valeur réelle de la tension fournit par l’éolienne. Afin d’obtenir les valeurs les plus proches de la réalité, nous avons utiliser une fonction affine (y=ax+b). Cette fonction permet d’enlever les petites imprécisions du capteur.
+
+
+###   VI.2-Code pour le capteur de courant
+
+Le code du capteur de courant est presque similaire à celui réalisé pour la mesure de tension. Le pin utilisé ici est le pin 35. Il est lui aussi configuré en entrée. On réalise les mêmes conversions que pour la tension. L’esp reçoit une tension entre 0 et 3.3V qu’il convertit en une valeur binaire comprise entre 0 et 4096. Nous retrouvons cette fois-ci le courant fournit par l’éolienne grâce à un polynôme du second degré de la forme a*x²+b*x+c.
+
+
+**###    VI.3-Code pour le capteur de fréquence**
+Le code pour cette mesure est différent et plus difficile que celui réalisé pour les deux premières mesures. L’initialisation reste, cependant, identique : le pin 32 correspond à l’entrée sur laquelle arrive l’information. Ensuite, nous avons utilisé une interruption pour mesurée la durée d’un créneau de tension car le signal de tension est reçu par l’esp sous la forme d’un signal carré. Pour obtenir la fréquence de l’éolienne, il faut prendre l’inverse de la durée d’un état bas ou haut du signal, soit réaliser l’opération : 1/durée. L’interruption intervient pour mesurer cette durée. En effet, dans notre programme, à chaque fois que la tension va passer de l’état haut (3.3V) à l’état bas (0V), le programme principal va se stopper. L’interruption est prioritaire sur ce dernier. Il reprendra lorsque la tension passera de l’état bas à l’état haut. L’arrêt du programme principal est très court (quelques microsecondes) et nous permet, via une fonction comptant le temps appelée timer, d’obtenir la valeur de la durée. Grâce à l’opération F=1/durée, on obtient la fréquence de l’éolienne. 
+L’avantage d’utiliser une interruption est qu’elle se produit en permanence sans aucune intervention. Ainsi, nous calculons en permanence la fréquence de rotation de l’éolienne.
+
+
+Objectifs atteints ?
+
+•  Les fonctionnalités
+ Le circuit répond aux exigences primaires exposées dans le cahier des charges : il mesure la tension, le courant et la fréquence, il fonctionne sur batterie, et les grandeurs calculées sont affichées sur une page WEB et sur un écran LCD.
+
+•  Les performances techniques 
+	L’autonomie : 
+ le circuit consomme 120 mA en fonctionnement normal sous une tension batterie de 3,7 V. La batterie fait 2500 mAh, donc l’autonomie est de 2500/120 = 20,8 heures. C’est moins que la semaine espérée dans le cahier des charges, mais néanmoins largement suffisant pour éviter des redémarrages intempestifs à chaque rafale de vent.
+	La mesure de tension : le CAN est de 12 bits donc on a une précision de 60V/2^12 = 0,0146 V. En réalité, sa qualité moyenne amène à des fluctuations qui diminue cette précision à 0,1 V environ. Cette précision est correcte.
+
+	La mesure de courant : la tension de sortie du capteur varie de 2,5 à 4,5 V, ramené dans la plage 1,65 à 2,97 V, soit un ΔV = 1,32 V. La précision est donc de (1,32×2^12)/3,3=1638 bits. Pour le capteur 15 A, cela correspond à 15/1638 = 9,15 mA. Mais comme pour la mesure de tension, la qualité du CAN amène à des fluctuations qui limitent la précision à environ 100 mA. Ce n’est pas une très bonne précision.
+
+	La mesure de fréquence : D’après nos mesures, la mesure de fréquence et donc de vitesse de rotation est précise à ± 2 %. C’est une valeur correcte.
+
+•  Le coût
+ Une carte revient à 45€ avec ses composants, on est donc bien en dessous des 50 € indiqués dans le cahier des charges.
+En revanche, les composants SMD ne sont pas soudés. Si on les fais souder par le fabricant de la carte, il facture un surcoût de 32€, soit 77€ au total.
+
+
+Pistes d’amélioration
+
+	Code pour un réglage des potentiomètres sans oscilloscope
+	Code pour commander un vu-mêtre connecté à la sortie prévue pour
+	Amélioration de l’interface de l’écran avec d’autres menus et d’autres informations
+	Ajout d’un circuit permettant de changer la plage de tension de sortie du capteur de courant de 2,5 → 4,5 V à 0 → 5 V
 
 
 
