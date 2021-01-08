@@ -27,11 +27,9 @@ On doit indiquer les mesures sur des afficheurs dont l’un visuel et didactique
 Le système doit être autonome et alimenté directement par l’éolienne (donc nécessité d’une batterie pour l’alimenter en l’absence de vent)
 
 
-Fonctionnement global de la carte :
+## Fonctionnement global de la carte :
 
-Partie puissance (alimentation des composants et batterie) :
-
- 
+### Partie puissance (alimentation des composants et batterie) :
 
 La carte peut être alimentée de 2 manières : soit par un connecteur micro-USB, soit directement par la tension redressée générée par l’éolienne. Le choix d’alimentation est à effectuer au moyen d’un interrupteur. 
 Dans le cas de l’alimentation par l’éolienne, la tension d’entrée est abaissée et régulée à 5 V par un circuit BUCK. Celui-ci accepte en entrée des tensions allant de 6 à 60 V, ce qui lui permet de fonctionner correctement avec les éoliennes 24 et 48 V, et de fournir 5 V même pour des vitesses de rotation de l’éolienne faibles.
@@ -42,7 +40,7 @@ Comme son nom l’indique, le circuit de charge et protection batterie permet de
 
 Le régulateur 3,3V a pour objectif de fournir une tension stable pour les composants nécessitant cette tension d’alimentation. C’est le cas de l’ESP32 ou de certains circuits intégrés. 
 
-Partie mesures :
+### Partie mesures :
 
 La carte est capable de mesurer 3 grandeurs physiques : la tension et le courant en continu, ainsi que la vitesse de rotation de l’éolienne.
 
@@ -54,14 +52,13 @@ La mesure de vitesse de rotation est une mesure de fréquence : elle est effectu
 Un bornier présent sur la carte permet de les connecter. Le signal sinusoïdal est d’abord réduit en tension par un pont diviseur, il passe ensuite par un amplificateur d’isolement pour éviter que des surtensions endommagent la carte, puis un AOP monté en bascule de Schmitt non inverseuse permet de le transformer en signal carré plus facilement traitable par l’ESP.
 
 
-Partie affichage :
+### Partie affichage :
 
 Les mesures sont affichées sur un site web en local. Pour y accéder, il faut d’abord indiquer dans la zone code prévue à cet effet le nom du réseau WIFI ainsi que le mot de passe pour s’y connecter. 
 Une fois le programme téléversé, ouvrez le moniteur série, l’adresse IP de la page web à rentrer dans le navigateur devrait être affichée.
 
-## II-Cahier des charges
+## II-Cahier des charges avec ses fonctions de contraintes 
 
-### II.1-Cahier des charges avec ses fonctions de contraintes 
  
 |   | FONCTIONS DE SERVICE     | CRITERES      | NIVEAUX    |  
 |---------|---------|--------|-------|
@@ -181,7 +178,10 @@ On choisit 100 kΩ et 2,7 kΩ (rapport de 37,03)
 
 #### V.1.d-Capteur à effet Hall CSM015SPT5 (mesure courant)
 
-
+Il existe plusieurs modèles de ce capteur destinés à mesurer des courants maximums allant de 5 à 50 A. 
+Ce capteur fonctionnant en 5 V et délivre une tension de 2,5 V pour un courant nul. Ensuite cette tension varie linéairement jusqu'à 4,5 V pour le courant maximum du modèle de capteur choisi, et jusqu'à 0,5 V pour le courant équivalent mais négatif. 
+Comme il fonctionne en 5 V et pas en 3,3 V comme l’ESP, on passe par l’intermédiaire d’un circuit d’adaptation de tension. 
+On a choisi un circuit classique bidirectionnel composé d'un transistor LBSS138LT1G. 
 
 
 
@@ -253,31 +253,34 @@ Nous avons relié le capteur de tension au pin numéro 34 de notre microcontrôl
 Le code du capteur de courant est presque similaire à celui réalisé pour la mesure de tension. Le pin utilisé ici est le pin 35. Il est lui aussi configuré en entrée. On réalise les mêmes conversions que pour la tension. L’esp reçoit une tension entre 0 et 3.3V qu’il convertit en une valeur binaire comprise entre 0 et 4096. Nous retrouvons cette fois-ci le courant fournit par l’éolienne grâce à un polynôme du second degré de la forme a*x²+b*x+c.
 
 
-**###    VI.3-Code pour le capteur de fréquence**
+###    VI.3-Code pour le capteur de fréquence
 Le code pour cette mesure est différent et plus difficile que celui réalisé pour les deux premières mesures. L’initialisation reste, cependant, identique : le pin 32 correspond à l’entrée sur laquelle arrive l’information. Ensuite, nous avons utilisé une interruption pour mesurée la durée d’un créneau de tension car le signal de tension est reçu par l’esp sous la forme d’un signal carré. Pour obtenir la fréquence de l’éolienne, il faut prendre l’inverse de la durée d’un état bas ou haut du signal, soit réaliser l’opération : 1/durée. L’interruption intervient pour mesurer cette durée. En effet, dans notre programme, à chaque fois que la tension va passer de l’état haut (3.3V) à l’état bas (0V), le programme principal va se stopper. L’interruption est prioritaire sur ce dernier. Il reprendra lorsque la tension passera de l’état bas à l’état haut. L’arrêt du programme principal est très court (quelques microsecondes) et nous permet, via une fonction comptant le temps appelée timer, d’obtenir la valeur de la durée. Grâce à l’opération F=1/durée, on obtient la fréquence de l’éolienne. 
 L’avantage d’utiliser une interruption est qu’elle se produit en permanence sans aucune intervention. Ainsi, nous calculons en permanence la fréquence de rotation de l’éolienne.
 
 
-Objectifs atteints ?
+## Atteinte des objectifs
 
 •  Les fonctionnalités
- Le circuit répond aux exigences primaires exposées dans le cahier des charges : il mesure la tension, le courant et la fréquence, il fonctionne sur batterie, et les grandeurs calculées sont affichées sur une page WEB et sur un écran LCD.
+--> Le circuit répond aux exigences primaires exposées dans le cahier des charges : il mesure la tension, le courant et la fréquence, il fonctionne sur batterie, et les grandeurs calculées sont affichées sur une page WEB et sur un écran LCD.
 
 •  Les performances techniques 
 	L’autonomie : 
- le circuit consomme 120 mA en fonctionnement normal sous une tension batterie de 3,7 V. La batterie fait 2500 mAh, donc l’autonomie est de 2500/120 = 20,8 heures. C’est moins que la semaine espérée dans le cahier des charges, mais néanmoins largement suffisant pour éviter des redémarrages intempestifs à chaque rafale de vent.
-	La mesure de tension : le CAN est de 12 bits donc on a une précision de 60V/2^12 = 0,0146 V. En réalité, sa qualité moyenne amène à des fluctuations qui diminue cette précision à 0,1 V environ. Cette précision est correcte.
+	--> le circuit consomme 120 mA en fonctionnement normal sous une tension batterie de 3,7 V. La batterie fait 2500 mAh, donc l’autonomie est de 2500/120 = 20,8 heures. C’est moins que la semaine espérée dans le cahier des charges, mais néanmoins largement suffisant pour éviter des redémarrages intempestifs à chaque rafale de vent.
+	La mesure de tension : 
+	--> le CAN est de 12 bits donc on a une précision de 60V/2^12 = 0,0146 V. En réalité, sa qualité moyenne amène à des fluctuations qui diminue cette précision à 0,1 V environ. Cette précision est correcte.
 
-	La mesure de courant : la tension de sortie du capteur varie de 2,5 à 4,5 V, ramené dans la plage 1,65 à 2,97 V, soit un ΔV = 1,32 V. La précision est donc de (1,32×2^12)/3,3=1638 bits. Pour le capteur 15 A, cela correspond à 15/1638 = 9,15 mA. Mais comme pour la mesure de tension, la qualité du CAN amène à des fluctuations qui limitent la précision à environ 100 mA. Ce n’est pas une très bonne précision.
+	La mesure de courant : 
+	--> la tension de sortie du capteur varie de 2,5 à 4,5 V, ramené dans la plage 1,65 à 2,97 V, soit un ΔV = 1,32 V. La précision est donc de (1,32×2^12)/3,3=1638 bits. Pour le capteur 15 A, cela correspond à 15/1638 = 9,15 mA. Mais comme pour la mesure de tension, la qualité du CAN amène à des fluctuations qui limitent la précision à environ 100 mA. Ce n’est pas une très bonne précision.
 
-	La mesure de fréquence : D’après nos mesures, la mesure de fréquence et donc de vitesse de rotation est précise à ± 2 %. C’est une valeur correcte.
+	La mesure de fréquence : 
+	--> D’après nos mesures, la mesure de fréquence et donc de vitesse de rotation est précise à ± 2 %. C’est une valeur correcte.
 
 •  Le coût
  Une carte revient à 45€ avec ses composants, on est donc bien en dessous des 50 € indiqués dans le cahier des charges.
 En revanche, les composants SMD ne sont pas soudés. Si on les fais souder par le fabricant de la carte, il facture un surcoût de 32€, soit 77€ au total.
 
 
-Pistes d’amélioration
+## Pistes d’amélioration
 
 	Code pour un réglage des potentiomètres sans oscilloscope
 	Code pour commander un vu-mêtre connecté à la sortie prévue pour
