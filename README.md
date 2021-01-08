@@ -148,7 +148,7 @@ Les condensateurs situés en entrée et sortie doivent aussi supporter les tensi
 Le choix plus complexe a été celui de l'inductance du circuit
 
 
-On cherche à dimensionner l’inductance du BUCK à être capable de fournir un courant de 2,5A en sortie.
+On cherche à dimensionner l’inductance du BUCK afin d'être capable de fournir un courant de 2,5A en sortie.
 Pour cela on utilise d’abord la relation d’entrée-sortie : BuckOut = α×Eol_continue  
 
 On connait par ailleurs grâce à la datasheet la période de hachage : T =6,67µs et on a fixé l’inductance L2=33µH
