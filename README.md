@@ -17,7 +17,7 @@ Le projet doit s'adapter aux éoliennes du réseau français Tripalium : https:/
 
 Lui-même basé sur le réseau Windempowerment : https://windempowerment.com/
 
-Il y a plusieurs modèles d’éoliennes qui ont des tensions allant de 12 V à 350 V et des puissances pouvant atteindre 2000 W pour la plus grande éolienne (4 m 20 de diamètre). Nous n'adapterons pas notre éolienne pour la version haute tension 350 V ni pour la version 12 V qui délivre directement une tension continue.
+Il y a plusieurs modèles d’éoliennes qui ont des tensions allant de 12 V à 350 V et des puissances pouvant atteindre 2000 W pour la plus grande éolienne (4 m 20 de diamètre). Nous n'adapterons pas notre dispositif pour la version haute tension 350 V ni pour la version 12 V qui délivre directement une tension continue.
 Les courants maximums mis en jeux vont de 4 A pour la plus petite éolienne en 48 V à plus de 80 A pour la plus grande en 24 V.
 
 La mesure de vitesse de rotation doit se faire en exploitant le signal triphasé sortant directement de l’éolienne. La mesure de tension et de courant (permettant d’en déduire la fréquence) se fait après le module redresseur de tension, donc en signal continu. 
@@ -83,8 +83,8 @@ Le circuit et les documents associés sont disponibles en open source et peuvent
 #### V.1.a-L’amplificateur d’isolement AMC1200 (mesure fréquence, composant 1)
 
 L’amplificateur d’isolement AMC1200 supporte au maximum une tension d’entrée crête à crête de 250 mV. 
-On effectue un pont diviseur pour obtenir cette tension lorsque la tension max de l’éolienne est présente en entrée (lorsque les batteries sont quasiment chargées), soit 4×14,5 V=58 V+2 V de marge, donc 60 V redressé. Ces 60 V redressés correspondent à 60 ×√2 crête-à-crête, et 60×√2×√3=147 V pour la tension composée (entre 2 phases) crête-à crête. 
-On calcule le rapport des résistances du PDT : (tension éolienne composée càc)/(tension entrée AOP)=147/0,250=588
+On effectue un pont diviseur pour obtenir cette tension lorsque la tension max de l’éolienne est présente en entrée (lorsque les batteries sont quasiment chargées), soit 4×14,5V=58 V + 2 V de marge, donc 60 V redressés. Ces 60 V redressés correspondent à 60 ×√2 crête-à-crête, et 60×√2×√3=147 V pour la tension composée (entre 2 phases) crête-à crête. 
+On calcule le rapport des résistances du pont diviseur de tension : (tension éolienne composée càc)/(tension entrée AOP)=147/0,250=588
 On choisit R9=180 kΩ  et R20=300 Ω  
 En plus de leur rapport, on fait attention à 2 points :
 	R20 ≪ résistance entrée AMC1200 =28 kΩ 
@@ -98,8 +98,8 @@ AMC1200 alimenté en 3,3 V, sa sortie oscille autour de 1,27 V avec une amplitud
 #### V.1.b-AOP TLV225 (mesure fréquence, composant 2)
 
 L’AOP TLV225 est monté en Bascule de Schmitt non inverseuse. 
-Les 2 résistances (R21 + R34) et R32 sont un pdt permettant de définir la tension de seuil moyenne. Les 2 autres résistances (R23 + R33) et R22 permettent de fixer les seuils inférieurs et supérieurs de basculement. 
-Cette tension est un compromis entre des seuils très différents pour éviter des erreurs dus à des parasites ou au bruit, et des seuils proches permettant de mesurer la fréquence même lorsque l’éolienne tourne très lentement et sa tension de sortie est faible. 
+Les 2 résistances (R21 + R34) et R32 sont un pont diviseur de tension permettant de définir la tension de seuil moyenne. Les 2 autres résistances (R23 + R33) et R22 permettent de fixer les seuils inférieurs et supérieurs de basculement. 
+Cette tension est un compromis entre des seuils très différents pour éviter des erreurs dues à des parasites ou au bruit, et des seuils proches permettant de mesurer la fréquence même lorsque l’éolienne tourne très lentement et sa tension de sortie est faible. 
 
 ##### V.1.b.1-Compromis parasites :
 Si l’on choisit des résistances (R23 + R33) et R22 avec un rapport 40 (1kΩ  et 40kΩ), on a une différence de seuil haut et bas de 0,08 V en sortie de l’AOP alimenté en 3,3V. Soit un rapport de tensions de  60/3.3≈20 , donc 0,08×20=1,6 V de variations sur la tension d’entrée. Si les parasites sont inférieurs à cette valeur, la mesure de fréquence ne sera pas faussée. 
@@ -107,8 +107,8 @@ Si l’on choisit des résistances (R23 + R33) et R22 avec un rapport 40 (1kΩ  
 
 ##### V.1.b.2-Compromis limite minimale de mesure de fréquence :
 On reprend les mêmes résistances (R23 + R33) et R22 avec un rapport 40 (1kΩ et 40kΩ), on se rappelle de la différence entre seuil haut et bas de 0,08 V, on peut donc mesurer une sinusoïde qui a cette valeur crête à crête au minimum. Avec une simple règle de 3, on calcule la tension correspondante en entrée de l’AOP : (0,08×0,250)/3,3=6,06 mV 
-On utilise le rapport des résistances du PDT calculé plus haut pour déterminer la tension min nécessaire à la mesure de fréquence : 6,06∙10^(-3)×588=3,56 V
-Grâce aux valeurs des vitesses de démarrage de charge du livre page 86, on peut déterminer leur vitesse de rotation pour atteindre cette tension.
+On utilise le rapport des résistances du pont diviseur de tension calculé plus haut pour déterminer la tension minimale nécessaire à la mesure de fréquence : 6,06∙10^(-3)×588=3,56 V
+Grâce aux valeurs des vitesses de démarrage de charge du livre page 86, on peut déterminer la vitesse de rotation des éoliennes pour atteindre cette tension.
 Éolienne 24 V et 1m20 : (300×3,56)/24=44,5 tr/min ou 0,74 Hz
 Éolienne 48 V et 4m20 : (120×3,56)/48=8,9 tr/min ou 0,15 Hz
 
@@ -124,7 +124,7 @@ Avec l’AOP entre les 2, ce n’est plus un problème : l’AOP peut supporter 
 On dimensionne à nouveau le pdt pour une tension max de 60 V : 
 On choisit un gain du montage non inverseur de 1+R17/R16=1+10/10=2
 Dans ce cas si on veut 3,3 V en sortie au maximum, il nous faut 3,3/2=1,65 V maximum en entrée de l’AOP. 
-Le PDT doit donc avoir un rapport min de 60/1,65=36,36 
+Le pont diviseur de tension doit donc avoir un rapport min de 60/1,65=36,36 
 On choisit 100 kΩ et 2,7 kΩ (rapport de 37,03)
 
 
@@ -148,7 +148,7 @@ Le choix plus complexe a été celui de l'inductance du circuit
 On cherche à la dimensionner afin d'être capable de fournir un courant de 2,5A en sortie.
 Pour cela on utilise d’abord la relation d’entrée-sortie : BuckOut = α×Eol_continue  
 
-On connait par ailleurs grâce à la datasheet la période de hachage : T =6,67µs et on a fixé l’inductance L2=33µH
+On connait par ailleurs, grâce à la datasheet, la période de hachage : T =6,67µs et on a fixé l’inductance L2=33µH
 
 On veut Iméd=2,5A on cherche donc à dimensionner IL2MAX sachant qu’on peut calculer l’ondulation de courant dans L2 donné par la relation suivante :
  ∆IL= I_L2MAX  - I_L2MIN  =  ((Eol_continue×T))/L2×α(1-α)  
@@ -172,7 +172,7 @@ Celui de GreatScott : https://www.instructables.com/DIY-LiPo-ChargeProtect5V-Boo
 
 Celui d'électronoob : https://electronoobs.com/eng_circuitos_tut49.php
 
-Le seul composant à modifier en fonction de l'utilisation est la résistance placée entre le pin "PROG" du TP4056 et la masse. En effet cette résistance permet de régler le courant de charge de la batterie. On a choisi une résistance de 2 kΩ ce qui définit un courant de charge de 580 mA. Les batteries li-ion 18650 que l'on utilise peuvent-être endommagées avec un courant plus élevé. Si l'on souhaite doubler l'autonomie, on peut placer 2 batteries en parallèle, et dans ce cas on peut aussi doubler le courant de charge. Il faut cependant veiller à ce que l'alimentation (le buck 5V et l'alimentation USB) puisse délivrer le courant nécessaire.
+Le seul composant à modifier en fonction de l'utilisation est la résistance placée entre le pin "PROG" du TP4056 et la masse. En effet cette résistance permet de régler le courant de charge de la batterie. On a choisi une résistance de 2 kΩ ce qui définit un courant de charge de 580 mA. Les batteries lithium-ion 18650 que l'on utilise peuvent-être endommagées avec un courant plus élevé. Si l'on souhaite doubler l'autonomie, on peut placer 2 batteries en parallèle, et dans ce cas on peut aussi doubler le courant de charge. Il faut cependant veiller à ce que l'alimentation (le buck 5V et l'alimentation USB) puisse délivrer le courant nécessaire.
 
 La partie Boost 5V présente dans ces deux circuits n'a pas été concervée car les composants nécessitant une alimentation 5V que nous utilisons sont directement reliés à la sortie 5V du Buck sur la carte. Le 5V n'est donc présent que lorsque l'éolienne tourne, mais ce n'est pas un problème puisque seul le  capteur de courant fonctionne en 5V, et le courant est nul lorsque l'éolienne est à l'arrêt. 
 
