@@ -27,13 +27,10 @@ On doit indiquer les mesures sur des afficheurs dont l’un visuel et didactique
 Le système doit être autonome et alimenté directement par l’éolienne (donc nécessité d’une batterie pour l’alimenter en l’absence de vent)
 
 
-## II-Contexte du projet
 
+## II-Cahier des charges
 
-
-## III-Cahier des charges
-
-### III.1-Cahier des charges avec ses fonctions de contraintes 
+### II.1-Cahier des charges avec ses fonctions de contraintes 
  
 |   | FONCTIONS DE SERVICE     | CRITERES      | NIVEAUX    |  
 |---------|---------|--------|-------|
@@ -57,33 +54,33 @@ Le système doit être autonome et alimenté directement par l’éolienne (donc
 
 
 
-## IV-Circuit et PCB
+## III-Circuit et PCB
 
 Le circuit électrique du dispositif est disponible ici : https://easyeda.com/Hupigotri/compteur_eolienne
 
 
-## V-Détails pour la réplication du projet
+## IV-Détails pour la réplication du projet
 
 Le circuit et les documents associés sont disponibles en open source et peuvent-être répliqués ou réutilisés sans contraintes.
 
 
-### V.1-Versions de la carte
+### IV.1-Versions de la carte
 
-#### V.1.a-Version 1.0
+#### IV.1.a-Version 1.0
 
-##### V.1.a.1-Réglage de la carte
+##### IV.1.a.1-Réglage de la carte
 
-##### V.1.a.2-Erreurs de conception
+##### IV.1.a.2-Erreurs de conception
 
-#### V.1.b-Version 1.1 ?
+#### IV.1.b-Version 1.1 ?
 
 
 
-## VI-Choix et dimensionnement des composants
+## V-Choix et dimensionnement des composants
 
-### VI.1-Composants pour les mesures
+### V.1-Composants pour les mesures
 
-#### VI.1.a-L’amplificateur d’isolement AMC1200 (mesure fréquence, composant 1)
+#### V.1.a-L’amplificateur d’isolement AMC1200 (mesure fréquence, composant 1)
 
 L’amplificateur d’isolement AMC1200 supporte au maximum une tension d’entrée crête à crête de 250 mV. 
 On effectue un pont diviseur pour obtenir cette tension lorsque la tension max de l’éolienne est présente en entrée (lorsque les batteries sont quasiment chargées), soit 4×14,5 V=58 V+2 V de marge, donc 60 V redressé. Ces 60 V redressés correspondent à 60 ×√2 crête-à-crête, et 60×√2×√3=147 V pour la tension composée (entre 2 phases) crête-à crête. 
@@ -98,17 +95,17 @@ AMC1200 alimenté en 3,3 V, sa sortie oscille autour de 1,27 V avec une amplitud
 
 
 
-#### VI.1.b-AOP TLV225 (mesure fréquence, composant 2)
+#### V.1.b-AOP TLV225 (mesure fréquence, composant 2)
 
 L’AOP TLV225 est monté en Bascule de Schmitt non inverseuse. 
 Les 2 résistances (R21 + R34) et R32 sont un pdt permettant de définir la tension de seuil moyenne. Les 2 autres résistances (R23 + R33) et R22 permettent de fixer les seuils inférieurs et supérieurs de basculement. 
 Cette tension est un compromis entre des seuils très différents pour éviter des erreurs dus à des parasites ou au bruit, et des seuils proches permettant de mesurer la fréquence même lorsque l’éolienne tourne très lentement et sa tension de sortie est faible. 
 
-##### VI.1.b.1-Compromis parasites :
+##### V.1.b.1-Compromis parasites :
 Si l’on choisit des résistances (R23 + R33) et R22 avec un rapport 40 (1kΩ  et 40kΩ), on a une différence de seuil haut et bas de 0,08 V en sortie de l’AOP alimenté en 3,3V. Soit un rapport de tensions de  60/3.3≈20 , donc 0,08×20=1,6 V de variations sur la tension d’entrée. Si les parasites sont inférieurs à cette valeur, la mesure de fréquence ne sera pas faussée. 
 
 
-##### VI.1.b.2-Compromis limite minimale de mesure de fréquence :
+##### V.1.b.2-Compromis limite minimale de mesure de fréquence :
 On reprend les mêmes résistances (R23 + R33) et R22 avec un rapport 40 (1kΩ et 40kΩ), on se rappelle de la différence entre seuil haut et bas de 0,08 V, on peut donc mesurer une sinusoïde qui a cette valeur crête à crête au minimum. Avec une simple règle de 3, on calcule la tension correspondante en entrée de l’AOP : (0,08×0,250)/3,3=6,06 mV 
 On utilise le rapport des résistances du PDT calculé plus haut pour déterminer la tension min nécessaire à la mesure de fréquence : 6,06∙10^(-3)×588=3,56 V
 Grâce aux valeurs des vitesses de démarrage de charge du livre page 86, on peut déterminer leur vitesse de rotation pour atteindre cette tension.
@@ -116,7 +113,7 @@ Grâce aux valeurs des vitesses de démarrage de charge du livre page 86, on peu
 Éolienne 48 V et 4m20 : (120×3,56)/48=8,9 tr/min ou 0,15 Hz
 
 
-#### VI.1.c-AOP TLV225 (mesure tension)
+#### V.1.c-AOP TLV225 (mesure tension)
 
 
 On effectue un simple pont diviseur sur la tension redressée pour avoir une image de la tension en entrée de l’AOP. 
@@ -131,13 +128,13 @@ Le PDT doit donc avoir un rapport min de 60/1,65=36,36
 On choisit 100 kΩ et 2,7 kΩ (rapport de 37,03)
 
 
-#### VI.1.d-Capteur à effet Hall CSM015SPT5 (mesure courant)
+#### V.1.d-Capteur à effet Hall CSM015SPT5 (mesure courant)
 
 
 
 
 
-### VI.2-Composants pour l'alimentation (Buck 5V)
+### V.2-Composants pour l'alimentation (Buck 5V)
 
 On veut un buck acceptant une tension d'entrée allant jusqu'à 60 V. Pour cela il y a des contrôleurs pour buck particuliers. C'est le cas du LM296HV que nous avons choisi d'utiliser. 
 
@@ -167,7 +164,7 @@ On choisit finalement un Inductance I_L2MAX=2,7A
 
 
 
-### VI.3-Composants pour la gestion de charge de la batterie
+### V.3-Composants pour la gestion de charge de la batterie
 
 Pour ce bloc fonctionnel on s'est grandement inspiré de deux exemples de circuits de gestion de batterie très similaires :
 
@@ -180,7 +177,7 @@ Le seul composant à modifier en fonction de l'utilisation est la résistance pl
 La partie Boost 5V présente dans ces deux circuits n'a pas été concervée car les composants nécessitant une alimentation 5V que nous utilisons sont directement reliés à la sortie 5V du Buck sur la carte. Le 5V n'est donc présent que lorsque l'éolienne tourne, mais ce n'est pas un problème puisque seul le  capteur de courant fonctionne en 5V, et le courant est nul lorsque l'éolienne est à l'arrêt. 
 
 
-### VI.4-Microcontrôleur (ESP32)
+### V.4-Microcontrôleur (ESP32)
 
 Le choix du microcontrôleur s'est porté sur un ESP-WROOM-32U. 
 Il est en effet largement utilisé dans l'industrie et facile à programmer. 
