@@ -148,8 +148,22 @@ Les condensateurs situés en entrée et sortie doivent aussi supporter les tensi
 Le choix plus complexe a été celui de l'inductance du circuit
 
 
-A DETAILLER
+On cherche à dimensionner l’inductance du BUCK à être capable de fournir un courant de 2,5A en sortie.
+Pour cela on utilise d’abord la relation d’entrée-sortie : BuckOut = α×Eol_continue  
 
+On connait par ailleurs grâce à la datasheet la période de hachage : T =6,67µs et on a fixé l’inductance L2=33µH
+
+On veut Iméd=2,5A on cherche donc à dimensionner IL2MAX sachant qu’on peut calculer l’ondulation de courant dans L2 donné par la relation suivante :
+ ∆IL= I_L2MAX  - I_L2MIN  =  ((Eol_continue×T))/L2×α(1-α)  
+ 
+On a l’ondulation maximale pour α=0,5 donc lorsque Eol_continue =10V et BuckOut =5V
+
+On a ∆ILmax=((Eol_continue×T))/(4×L2)=0,5A
+
+On a donc I_L2MAX  = I_méd  +(∆I_Lmax)/2 
+AN : I_L2MAX  =2,75A 
+
+On choisit finalement un Inductance I_L2MAX=2,7A
 
 
 
