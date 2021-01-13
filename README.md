@@ -9,6 +9,11 @@ Leon PEYRAT
 
 Hugo PIETRI
 
+
+![](Images/Circuit_assemble_1.JPG)
+
+
+
 ## I-Introduction
 
 Ce projet a pour but la réalisation d'un dispositif de mesure de la production électrique et de la vitesse de rotation d'une éolienne de particulier, avec afficheur et interface web.
