@@ -119,7 +119,7 @@ Ensuite revenez sur le potentiomètre R33 qui permet de fixer les seuils inféri
 -	Un problème de conversion de tension est présent entre le capteur de courant et l’ESP ce qui limite le courant mesurable à seulement 56 % du courant nominal maximum du capteur de courant (8,5 A dans le cas du capteur 15 A)
 -	L’interrupteur de sélection de l’alimentation est inversé : sur la position « éolienne » la carte est alimentée par USB, et inversement.
 -	Les potentiomètres sont câblés en inverse, donc lorsque l’on visse la résistance augmente pour l’un et diminue pour l’autre ce qui peut porter à confusion.
--	Pour la sortie vers un éventuel vu-mêtre basé sur des LEDS WS2812, le 5 V n’est pas présent en plus des pin de masse, VCC et GPIO19.
+-	Pour la sortie vers un éventuel vu-mêtre basé sur des LEDS WS2812, en plus des pin de masse et GPIO19, il y a un VCC (3,3V) alors que ldes leds fonctionnent en 5V.
 
 
 #### V.1.b-Version 1.1 
@@ -127,7 +127,13 @@ Ensuite revenez sur le potentiomètre R33 qui permet de fixer les seuils inféri
 Une nouvelle version de la carte qui corrige toutes les erreurs de conception citées ci-dessus est disponible au lien suivant (même lien que celui indiqué au début du GitHub) : 
 https://easyeda.com/Hupigotri/compteur_eolienne
 
+Détail des corrections :
 
+-	Le 5 V de sortie du buck est maintenant bien relié à l’entrée 5 V du capteur de courant, l'étiquette « chargein5v » a été transformée en étiquette d'alimentation et renommée « 5V » pour simplifier la nomenclature.
+-	Le problème de conversion est résolu : le transistor a été remplacé par un simple pont diviseur de tension.
+-	L’interrupteur de sélection de l’alimentation n'est plus inversé.
+-	Les potentiomètres sont bien câblés
+-	Pour la sortie vers un éventuel vu-mêtre basé sur des LEDS WS2812, le troisième pin est maintenant une sortie 5V (non actif lors du fonctionnement uniquement sur batterie !).
 
 
 ## VI-Choix et dimensionnement des composants
