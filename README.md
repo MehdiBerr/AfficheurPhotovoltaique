@@ -108,6 +108,7 @@ Lien du circuit de cette ancienne version : https://easyeda.com/Hupigotri/compte
 ##### V.1.a.1-Réglage de la carte
 
 Pour téléverser le code, vous aurez besoin d'une carte usb vers uart comme celle à cette adresse : https://fr.aliexpress.com/item/33000531104.html
+
 Lors du téléversement, NE PAS CONNECTER LE VCC sauf si c'est la seule alimentation de l'ESP (ni usb, ni éolienne, ni batterie), il ne faut jamais connecter 2 alimentations ensemble, sinon des composants peuvent griller.
 
 Une fois tous les composants placés sur la carte, il faut régler les 2 potentiomètres. Il est nécessaire de disposer d’un oscilloscope pour cette opération connecté entre la masse et le GPIO 32 de l’ESP. Pour cela, dévissez complètement le potentiomètre n°R33 ce qui a pour effet de mettre sa valeur à son maximum (100 kΩ) et d’annuler la fonction d’hystérésis (seuil basculement haut = seuil basculement bas). 
@@ -305,6 +306,7 @@ En revanche, les composants SMD ne sont pas soudés. Si on les fais souder par l
 - Code pour commander un vu-mêtre connecté à la sortie prévue pour
 - Amélioration de l’interface de l’écran avec d’autres menus et d’autres informations
 - Ajout d’un circuit permettant de changer la plage de tension de sortie du capteur de courant de 2,5 → 4,5 V à 0 → 5 V
+- Remplacer le support de la batterie par un simple connecteur pour réduire la taille de la carte et augmenter les possibilités de choix et agencement de batterie
 
 
 
