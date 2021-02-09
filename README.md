@@ -107,6 +107,9 @@ Lien du circuit de cette ancienne version : https://easyeda.com/Hupigotri/compte
 
 ##### V.1.a.1-Réglage de la carte
 
+Pour téléverser le code, vous aurez besoin d'une carte usb vers uart comme celle à cette adresse : https://fr.aliexpress.com/item/33000531104.html
+Lors du téléversement, NE PAS CONNECTER LE VCC sauf si c'est la seule alimentation de l'ESP (ni usb, ni éolienne, ni batterie), il ne faut jamais connecter 2 alimentations ensemble, sinon des composants peuvent griller.
+
 Une fois tous les composants placés sur la carte, il faut régler les 2 potentiomètres. Il est nécessaire de disposer d’un oscilloscope pour cette opération connecté entre la masse et le GPIO 32 de l’ESP. Pour cela, dévissez complètement le potentiomètre n°R33 ce qui a pour effet de mettre sa valeur à son maximum (100 kΩ) et d’annuler la fonction d’hystérésis (seuil basculement haut = seuil basculement bas). 
 Ensuite balayez toute la plage de résistance avec le potentiomètre R34 jusqu’à obtenir un signal carré, puis ajustez le pour se rapprocher le plus possible d’un signal de rapport cyclique 0,5. La tension de seuil moyenne a bien été définie.
 
