@@ -124,11 +124,11 @@ Ensuite revenez sur le potentiomètre R33 qui permet de fixer les seuils inféri
 -	L’interrupteur de sélection de l’alimentation est inversé : sur la position « éolienne » la carte est alimentée par USB, et inversement.
 -	Les potentiomètres sont câblés en inverse, donc lorsque l’on visse la résistance augmente pour l’un et diminue pour l’autre ce qui peut porter à confusion.
 -	Pour la sortie vers un éventuel vu-mêtre basé sur des LEDS WS2812, en plus des pin de masse et GPIO19, il y a un VCC (3,3V) alors que ldes leds fonctionnent en 5V.
-
+-	Le dessin PCB du support pour batterie est le mauvais, il est trop petit comparé au support reçu.
 
 #### V.1.b-Version 1.1 
 
-Une nouvelle version de la carte qui corrige toutes les erreurs de conception citées ci-dessus est disponible au lien suivant (même lien que celui indiqué au début du GitHub) : 
+Une nouvelle version de la carte qui corrige les erreurs de conception citées ci-dessus est disponible au lien suivant (même lien que celui indiqué au début du GitHub) : 
 https://easyeda.com/Hupigotri/compteur_eolienne
 
 Détail des corrections :
@@ -138,6 +138,7 @@ Détail des corrections :
 -	L’interrupteur de sélection de l’alimentation n'est plus inversé.
 -	Les potentiomètres sont bien câblés
 -	Pour la sortie vers un éventuel vu-mêtre basé sur des LEDS WS2812, le troisième pin est maintenant une sortie 5V (non actif lors du fonctionnement uniquement sur batterie !).
+-       ATTENTION, le support de batterie n'a pas été remplacé, il est toujours trop petit, la modification est à faire ! (non remplacé car il est probablement préférable de remplacer le support par un simple connecteur comme suggéré plus bas dans les pistes d'amélioration)
 
 
 ## VI-Choix et dimensionnement des composants
