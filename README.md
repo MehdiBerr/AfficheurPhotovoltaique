@@ -308,9 +308,9 @@ En revanche, les composants SMD ne sont pas soudés. Si on les fais souder par l
 - Ajout d’un circuit permettant de changer la plage de tension de sortie du capteur de courant de 2,5 → 4,5 V à 0 → 5 V
 - Remplacer le support de la batterie par un simple connecteur pour réduire la taille de la carte et augmenter les possibilités de choix et agencement de batterie
 
-#Afficheur Photovoltaïque
+# Afficheur Photovoltaïque
 
-##Membres de l’équipe 
+## Membres de l’équipe 
 
 Mehdi Berrada
 
@@ -322,7 +322,7 @@ Eliza Filip
 
 Adam Mezaber
 
-##Introduction 
+## Introduction 
 
 Ce projet à pour but la création d’un banc de test photovoltaïque pour la caractérisation de cartes convertisseurs MPPT (Maximum Power Point Tracking). La première carte est la carte LibreSolar open source. La seconde est une carte industrielle XXXX. Pour ce faire, nous allons réaliser un certain nombre de mesures sur notre banc de test, et notamment des mesures sur la puissance de sorties du convertisseur MPPT. Ces mesures seront réalisées à l’aide de la carte microcontrôleur à base de MSP32 crée pour la projet « Afficheur éolienne ». L’objectif sera, en plus de la caractérisation des cartes MPPT, la visibilité des mesures en temps réel via une interface web. Des pages web seront dont embarquées dans le microcontrôleur MSP32 et devrons être accessible via un PC ou un smartphone. 
 
