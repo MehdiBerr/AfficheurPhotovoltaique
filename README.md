@@ -9,6 +9,8 @@ Leon PEYRAT
 
 Hugo PIETRI
 
+Mehdi BERRADA
+
 
 ![](Images/Circuit_assemble_1.JPG)
 
