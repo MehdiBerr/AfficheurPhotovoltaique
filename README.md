@@ -346,9 +346,7 @@ En ce qui concerne le type des lampes, ce sont des lampes halogènes. Nous avons
 
 ![](Images/Spectre_SFJ.JPG)
 
-<<<<<<< HEAD
 
-=======
 ## Choix du panneau photovoltaïque
 
 Les contraintes que nous avons pour le choix du panneau sont les suivantes :
@@ -366,4 +364,4 @@ Il s’agit d’un panneau photovoltaïque monocristallin comportant 36 cellules
 ![](Images/datasheetPV.PNG)
 
 Avec ce panneau et nos lampes, nous nous attendons à avoir une puissance délivrée en sortie de 80 à 100W. Cette dernière nous permettrait de caractériser correctement nos convertisseurs MPPT.
->>>>>>> a1000cd73eef30ca6a7e729439a88ee45ed88f4b
+
