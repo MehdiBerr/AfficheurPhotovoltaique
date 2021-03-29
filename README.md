@@ -344,8 +344,7 @@ Nous avons fait le choix de prendre ce kit de lampe là (et non deux lampes de 5
 Aussi, le prix de ce dispositif (environ 50€) nous parait très correct.
 En ce qui concerne le type des lampes, ce sont des lampes halogènes. Nous avons fait le choix de prendre des lampes halogènes pour pouvoir avoir des lampes fournissant près de 400W et qui rentrent dans notre budget. De plus, le spectre d’une lampe halogène présente quasiment la même allure que celui du soleil en après-midi et en fin de journée. Il convient donc pour ces tests.
 
-![](Images/Spectre_SFJ.JPG)
-
+![](Images/spectre_2.PNG)
 
 ## Choix du panneau photovoltaïque
 
@@ -357,7 +356,7 @@ Les contraintes que nous avons pour le choix du panneau sont les suivantes :
  
 Afin de respecter ces trois contraintes nous avons choisi le panneau suivant à 146.2 euros HT :
 
-310268 | Panneau solaire photovoltaïque, puissance 100W | RS Components (rs-online.com)
+https://fr.rs-online.com/web/p/panneaux-solaires/1881234/?fbclid=IwAR1PjmZR-h3LvUEhJExDubokRcnUdeqzKAehREmtDqtzwf_Se5cUT-zvQHs
 
 Il s’agit d’un panneau photovoltaïque monocristallin comportant 36 cellules et délivrant une puissance crète d’environ 100W. Ces caractéristiques principales sont résumé dans l’extrait de la datasheet suivant :
 
