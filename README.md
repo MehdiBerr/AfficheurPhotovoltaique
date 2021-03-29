@@ -344,7 +344,6 @@ Nous avons fait le choix de prendre ce kit de lampe là (et non deux lampes de 5
 Aussi, le prix de ce dispositif (environ 50€) nous parait très correct.
 En ce qui concerne le type des lampes, ce sont des lampes halogènes. Nous avons fait le choix de prendre des lampes halogènes pour pouvoir avoir des lampes fournissant près de 400W et qui rentrent dans notre budget. De plus, le spectre d’une lampe halogène présente quasiment la même allure que celui du soleil en après-midi et en fin de journée. Il convient donc pour ces tests.
 
+![](Images/spectre.PNG)
 
-![](Images/Circuit_assemble_1.JPG)
 
-![](Images/Spectre_SFJ.JPG)
