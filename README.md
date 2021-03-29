@@ -333,9 +333,12 @@ La figure suivante explique schématiquement la structuration du banc d’essai 
 ## Choix de la lampe
 
 Notre PRT consiste à tester et comparer deux MPPT : un Libre Solar en open source ainsi qu’un fait à compléter ici.
+
 Ces derniers permettent de prendre la valeur maximale de puissance en sortie d’un panneau photovoltaïque, et ceux à tout instants. Pour procéder aux tests, nous allons utiliser un panneau salaire 100W que nous allons éclairer avec des lampes fournissant près de 1000W. 
+
 Le but étant de se rapprocher des conditions standards de test, il est très important de bien choisir les lampes d’éclairage pour reproduire au mieux la puissance fixer par les STC (standard test conditions), ainsi que le spectre lumineux du soleil.
 Nous allons dons vous présenter ici notre choix de lampe et les raisons de ce choix.
+
 Pour les tests à réaliser, nous avons choisit de prendre deux lampes halogènes de 400W chacune. En effet, nous voulons en sortie du panneau photovoltaïque 100W. Or, nous savons que ce dernier dispositif possède un rendement de près de 10%. Ainsi, deux lampes de 400W (800W au total) va nous permettre de nous rapprocher au maximum des 100W voulus.
 Nous avons fait le choix de prendre ce kit de lampe là (et non deux lampes de 500W chacune) car il est livré avec un trépied qui nous permettra d’ajuster facilement la distance source lumineuse – panneau photovoltaïque et d’ajuster l’angle d’impact de la lumière sur le panneau pour tester plusieurs plages de spectre.
 Aussi, le prix de ce dispositif (environ 50€) nous parait très correct.
