@@ -378,5 +378,5 @@ Les deux gradateurs ont été commandé sur RS Component :
 
 https://fr.rs-online.com/web/p/variateurs-de-lumiere/7903050/
 
-![](Images/gradateurs3.PNG)
+![](Images/gradateur4.PNG)
 
