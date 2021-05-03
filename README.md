@@ -373,7 +373,10 @@ Avec ce panneau et nos lampes, nous nous attendons à avoir une puissance déliv
 Il n’est pas nécessaire de rappeler que le but de notre PRT est de tester deux cartes MPPT.
 Ainsi, une des conditions de test à prendre en compte est l’éclairage du panneau photovoltaïque. Dans un premier temps, à l’aide du trépied-support des deux lampes, nous pouvons régler l’angle d’incidence de la lumière sur le panneau photovoltaïque et simuler l’angle optimal pour obtenir un maximum de puissance en sortie. Ensuite, nous voulons aussi pouvoir régler la puissance de la luminosité arrivant sur le panneau. Le but étant d’expérimenter les MPPT sous différentes puissances de luminosité et de voir comment ces derniers se comportent. Ainsi, la meilleure façon d’y arriver est d’installer un gradateur en amont de chaque lampe. Cela va nous permettre de régler à notre guise la puissance de luminosité.
 Comme expliquer plus tôt, nous avons deux lampes de 400W qui vont éclairer le panneau photovoltaïque. Nous avons choisi d’installer deux gradateurs, un pour chaque lampe, pour des raisons financières. En effet, un gradateur de 800W coûte bien plus cher que deux gradateurs de 400W.
-Les deux gradateurs ont été commandé sur RS Component : https://fr.rs-online.com/web/p/variateurs-de-lumiere/7903050/
 
-![](Images/Gradateur.JPG)
+Les deux gradateurs ont été commandé sur RS Component : 
+
+https://fr.rs-online.com/web/p/variateurs-de-lumiere/7903050/
+
+![](Images/gradateurs.JPG)
 
