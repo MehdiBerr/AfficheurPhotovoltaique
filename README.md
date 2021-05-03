@@ -383,14 +383,22 @@ https://fr.rs-online.com/web/p/variateurs-de-lumiere/7903050/
 ## Calcul section des conducteurs et dimensionnement des protections
 
 Calcul de la section des conducteurs par la méthode du courant Iz fictif :
+
 Formule générale : Iz = In/(K1*K2*K3)
+
 Avec un courant nominal de 10A (Le MPPT ne pouvant supporter plus de 10A on considère cette valeur comme nominal pour être sûr que notre câble pourra supporter le courant circulant)
-Détermination de la lettre de sélection et des coefficients à partir des tables
+Détermination de la lettre de sélection et des coefficients à partir des tables.
+
 Lettre de sélection : F
+
 K1 = 1 (D’après le tableau correspondant à K1 le lettre de sélection F correspond à un coefficient 1)
+
 K2 = 1 (Un seul câble)
+
 K3 = 1,06 (D’après la lettre et la température ambiante d’environ 25°C)
+
 Iz = 9,4A 
+
 D’après le tableau de détermination de la section minimale, nous trouvons une section de 1,5mm²
 
 Nous avons chercher à vérifier notre dimensionnement en utilisant un outil de calcul de section de câble.
