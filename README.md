@@ -409,3 +409,5 @@ https://commentcalculer.fr/calcul/section-cable/
 ![](Images/section.PNG)
 
 Pour ce qui est de la protection, nous allons utiliser un fusible 10A en amont de l'alimentation de la batterie relier à la batterie du MPPT comme indiqué sur le schéma suivant : 
+
+![](Images/fuse.PNG)
