@@ -346,6 +346,10 @@ En ce qui concerne le type des lampes, ce sont des lampes halogènes. Nous avons
 
 ![](Images/spectre_2.PNG)
 
+Ci-dessous, le lien vers le trépied halogène de chez RS :
+
+https://fr.rs-online.com/web/p/projecteurs-de-chantier/7918267/
+
 ## Choix du panneau photovoltaïque
 
 Les contraintes que nous avons pour le choix du panneau sont les suivantes :
