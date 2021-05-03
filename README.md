@@ -375,5 +375,5 @@ Ainsi, une des conditions de test à prendre en compte est l’éclairage du pan
 Comme expliquer plus tôt, nous avons deux lampes de 400W qui vont éclairer le panneau photovoltaïque. Nous avons choisi d’installer deux gradateurs, un pour chaque lampe, pour des raisons financières. En effet, un gradateur de 800W coûte bien plus cher que deux gradateurs de 400W.
 Les deux gradateurs ont été commandé sur RS Component : https://fr.rs-online.com/web/p/variateurs-de-lumiere/7903050/
 
-![](Images/Gradateur.PNG)
+![](Images/Gradateur.JPG)
 
