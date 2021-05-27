@@ -1,4 +1,4 @@
-# AfficheurPhotovoltaique
+# Afficheur éolienne et Banc de test Photovoltaïque
 
 
 ## Membres de l'équipe
@@ -412,6 +412,11 @@ Pour ce qui est de la protection, nous allons utiliser un fusible 10A en amont d
 
 ![](Images/fuse.PNG)
 
+## Caractérisation du panneau photovoltaïque
+
+Après réception du panneau photovoltaïque, nous avons caractérisé ce dernier. Ainsi, nous avons connecté notre panneau à une charge électronique programmable. Nous avons placé notre source lumineuse à 70cm du panneau et nous l'avons orienté de façon à avoir le meilleur éclairage possible. Ci-dessous, vous pouvez voir une photo de l'expérience de caractérisation du panneau :
+
+![](Images/banc_panneau.PNG)
 
 ## Utilisation de la carte MPPT
 
