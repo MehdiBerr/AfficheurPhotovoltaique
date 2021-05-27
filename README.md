@@ -431,11 +431,11 @@ Nous remarquons que la puissance maximale du panneau avec ce niveau d'éclaireme
 
 Nous remarquons deux points d'attention à prendre en compte :
 
-1- Le rendement entre à la puissance électrique en entrée des lampes et la puissance lumineuse qui arrive sur le panneau est particulièrement faible en utilisant des lampes halogène. En effet, ce type de lampe disperse beaucoup d'énergie sous forme de chaleur ce qui réduit leurs efficacité.
+1- Le rendement entre  la puissance électrique en entrée des lampes et la puissance lumineuse qui arrive sur le panneau est particulièrement faible en utilisant des lampes halogène. En effet, ce type de lampe disperse beaucoup d'énergie sous forme de chaleur ce qui réduit son efficacité.
 
-2- Le rendement du panneau indiqué sur le bilan de puissance est celui donné par le constructeur pour le spectre de la lumière solaire. Il se voit donc forcement réduit due aux différences de spectre entre la lampe halogène et le soleil ce qui va encore déteriorer le rendement calculé de nos lampes.
+2- Le rendement du panneau indiqué sur le bilan de puissance est celui donné par le constructeur (pour le spectre de la lumière solaire). Il se voit donc forcement réduit due aux différences de spectre entre la lampe halogène et le soleil. Ce qui va encore déteriorer le rendement de nos lampes.
 
-Lors de notre premier dimensionnement, nous n'avions pas pris en compte de telles pertes dans les lampes halogène ce qui fausse la puissance de sortie. Pour corriiger ce problème et avoir environ 100W en sortie, il nous faudrait environ 15 lampes 400W ! Ceci n'étant pas une solution valable au vue de notre bujet initiale d'environ 200 euros que nous avions déjà dépassé avec nos différentes commandes. Il nous faudra donc nous contenter d'une faible puissance pour le moment. Un changement de technologie de lampe serait une piste d'amélioration pour ce projet mais le budjet ne sera pas le même.
+Lors de notre premier dimensionnement, nous n'avions pas pris en compte de telles pertes dans les lampes halogènes, ce qui fausse la puissance de sortie. Pour corriger ce problème et avoir environ 100W en sortie, il nous faudrait environ 15 lampes 400W ! Ceci n'étant pas une solution valable au vue de notre bujet initiale d'environ 200€ que nous avions déjà dépensé pour nos différentes commandes. Il nous faudra donc nous contenter d'une faible puissance pour le moment. Un changement de technologie de lampe serait une piste d'amélioration pour ce projet mais le budjet ne sera pas le même.
 
 ## Utilisation de la carte MPPT
 
