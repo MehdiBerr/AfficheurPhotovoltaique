@@ -411,3 +411,10 @@ https://commentcalculer.fr/calcul/section-cable/
 Pour ce qui est de la protection, nous allons utiliser un fusible 10A en amont de l'alimentation de la batterie relier au MPPT comme indiqué sur le schéma suivant : 
 
 ![](Images/fuse.PNG)
+
+
+## Utilisation de la carte MPPT
+
+Afin de pouvoir utiliser le MPPT, il faut au préalable le flasher. En effet, il n'y a pas de code dessus au départ et il est indispensable de téléverser ce dernier dans la carte MPPT.
+Suivant la datasheet LibreSolar, le code à flasher a été fait/écrit en C/C++ et est téléchargeble depuis la page GitHub associée au MPPT 1210 HUS.
+Ainsi, il suffit de télécharger Visual Studio, un environnement de developpement, et de rajouter l'extension PlatformIO IDE pour pouvoir lire le code. 
