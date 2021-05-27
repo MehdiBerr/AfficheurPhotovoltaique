@@ -414,9 +414,17 @@ Pour ce qui est de la protection, nous allons utiliser un fusible 10A en amont d
 
 ## Caractérisation du panneau photovoltaïque
 
-Après réception du panneau photovoltaïque, nous avons caractérisé ce dernier. Ainsi, nous avons connecté notre panneau à une charge électronique programmable. Nous avons placé notre source lumineuse à 70cm du panneau et nous l'avons orienté de façon à avoir le meilleur éclairage possible. Ci-dessous, vous pouvez voir une photo de l'expérience de caractérisation du panneau :
+Après réception du panneau photovoltaïque, nous avons caractérisé ce dernier. Ainsi, nous avons connecté notre panneau à une charge électronique programmable et nous avons placé notre source lumineuse à 70cm du panneau et nous l'avons orienté de façon à avoir le meilleur éclairage possible. 
+
+Ci-dessous, vous pouvez voir une photo de l'expérience de caractérisation du panneau :
 
 ![](Images/banc_panneau.PNG)
+
+A l'aide de la charge programmable, nous avons pu imposer un courant de sortie du panneau et donc tracé ses caractéristiques V(I) et P(I) qui on une forme très similaira à la litérature. Les courbes sont référencées ci dessous :
+
+
+![](Images/carac_panneau.PNG)
+
 
 ## Utilisation de la carte MPPT
 
