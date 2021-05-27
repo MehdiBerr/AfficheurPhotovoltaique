@@ -431,7 +431,7 @@ Nous remarquons que la puissance maximale du panneau avec ce niveau d'éclaireme
 
 Nous remarquons deux points d'attention à prendre en compte :
 
-1- Le rendement entre à la puissance électrique en entrée des lampes et la puissance lumineuse qui arrive sur le panneau est particulièrement faible en utilisant des lampes halogène.En effet, ce type de lampe disperse beaucoup d'énergie sous forme de chaleur ce qui réduit leurs efficacité.
+1- Le rendement entre à la puissance électrique en entrée des lampes et la puissance lumineuse qui arrive sur le panneau est particulièrement faible en utilisant des lampes halogène. En effet, ce type de lampe disperse beaucoup d'énergie sous forme de chaleur ce qui réduit leurs efficacité.
 
 2- Le rendement du panneau indiqué sur le bilan de puissance est celui donné par le constructeur pour le spectre de la lumière solaire. Il se voit donc forcement réduit due aux différences de spectre entre la lampe halogène et le soleil ce qui va encore déteriorer le rendement calculé de nos lampes.
 
