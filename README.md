@@ -442,3 +442,5 @@ Lors de notre premier dimensionnement, nous n'avions pas pris en compte de telle
 Afin de pouvoir utiliser le MPPT, il faut au préalable le flasher. En effet, il n'y a pas de code dessus au départ et il est indispensable de téléverser ce dernier dans la carte MPPT.
 Suivant la datasheet LibreSolar, le code à flasher a été fait/écrit en C/C++ et est téléchargeble depuis la page GitHub associée au MPPT 1210 HUS.
 Ainsi, il suffit de télécharger Visual Studio, un environnement de developpement, et de rajouter l'extension PlatformIO IDE pour pouvoir lire le code. 
+
+## Mise en réseau et gestion des données du banc de test
