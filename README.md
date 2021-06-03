@@ -414,28 +414,28 @@ Pour ce qui est de la protection, nous allons utiliser un fusible 10A en amont d
 
 ## Caractérisation du panneau photovoltaïque
 
-Après réception du panneau photovoltaïque, nous avons caractérisé ce dernier. Ainsi, nous avons connecté notre panneau à une charge électronique programmable et nous avons placé notre source lumineuse à 70cm du panneau et nous l'avons orienté de façon à avoir le meilleur éclairage possible. 
+Après réception du panneau photovoltaïque, nous avons caractérisé ce dernier. Ainsi, nous avons connecté notre panneau à une charge électronique programmable et nous avons placé notre source lumineuse à 70 cm du panneau et nous l'avons orienté de façon à avoir le meilleur éclairage possible. 
 
 Ci-dessous, vous pouvez voir une photo de l'expérience de caractérisation du panneau :
 
 ![](Images/banc_panneau.PNG)
 
-A l'aide de la charge programmable, nous avons pu imposer un courant de sortie du panneau et donc tracé ses caractéristiques V(I) et P(I) qui on une forme très similaira à la litérature. Les courbes sont référencées ci dessous :
+A l'aide de la charge programmable, nous avons pu imposer un courant de sortie au panneau et donc tracer ses caractéristiques V(I) et P(I), qui ont une forme très similaire à la litérature. Les courbes sont référencées ci dessous :
 
 
 ![](Images/carac_panneau.PNG)
 
-Nous remarquons que la puissance maximale du panneau avec ce niveau d'éclairement est bien en dessous de celle attendu dans notre premier dimensionnement. Nous avons donc décidé de réalisé un bilan de puissance de notre installation (Lampes / panneau / charge) pour mieux comprendre ces faibles valeurs.
+Nous remarquons que la puissance maximale du panneau avec ce niveau d'éclairage est bien en dessous de celle attendue dans notre premier dimensionnement. Nous avons donc décidé de réaliser un bilan de puissance de notre installation (Lampes / panneau / charge) pour mieux comprendre ces faibles valeurs : 
 
 ![](Images/bilan_puissance.PNG)
 
-Nous remarquons deux points d'attention à prendre en compte :
+Nous remarquons deux points à prendre en compte :
 
-1- Le rendement entre  la puissance électrique en entrée des lampes et la puissance lumineuse qui arrive sur le panneau est particulièrement faible en utilisant des lampes halogène. En effet, ce type de lampe disperse beaucoup d'énergie sous forme de chaleur ce qui réduit son efficacité.
+1- Le rendement entre  la puissance électrique en entrée des lampes et la puissance lumineuse qui arrive sur le panneau est particulièrement faible en utilisant des lampes halogènes. En effet, ce type de lampe disperse beaucoup d'énergie sous forme de chaleur, ce qui réduit son efficacité.
 
-2- Le rendement du panneau indiqué sur le bilan de puissance est celui donné par le constructeur (pour le spectre de la lumière solaire). Il se voit donc forcement réduit due aux différences de spectre entre la lampe halogène et le soleil. Ce qui va encore déteriorer le rendement de nos lampes.
+2- Le rendement du panneau indiqué sur le bilan de puissance est celui donné par le constructeur (pour le spectre de la lumière solaire). Il se voit donc fortement réduit due aux différences de spectre entre la lampe halogène et le soleil. Ce qui va encore déteriorer le rendement de nos lampes.
 
-Lors de notre premier dimensionnement, nous n'avions pas pris en compte de telles pertes dans les lampes halogènes, ce qui fausse la puissance de sortie. Pour corriger ce problème et avoir environ 100W en sortie, il nous faudrait environ 15 lampes 400W ! Ceci n'étant pas une solution valable au vue de notre bujet initiale d'environ 200€ que nous avions déjà dépensé pour nos différentes commandes. Il nous faudra donc nous contenter d'une faible puissance pour le moment. Un changement de technologie de lampe serait une piste d'amélioration pour ce projet mais le budjet ne sera pas le même.
+Lors de notre premier dimensionnement, nous n'avions pas pris en compte de telles pertes dans les lampes halogènes, ce qui fausse la puissance de sortie. Pour corriger ce problème et avoir environ 100W en sortie, il nous faudrait environ 15 lampes 400W ! Ceci n'étant pas une solution valable au vue de notre budget initial d'environ 200€ que nous avions déjà dépensé pour nos différentes commandes. Il nous faudra donc nous contenter d'une faible puissance pour le moment. Un changement de technologie de lampe serait une piste d'amélioration pour ce projet mais le budget ne sera pas le même.
 
 ## Utilisation de la carte MPPT
 
