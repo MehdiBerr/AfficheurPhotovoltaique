@@ -324,7 +324,7 @@ Adam Mezaber
 
 ## Introduction 
 
-Ce projet à pour but la création d’un banc de test photovoltaïque pour la caractérisation de cartes convertisseurs MPPT (Maximum Power Point Tracking). La première carte est la carte LibreSolar open source. La seconde est une carte industrielle XXXX. Pour ce faire, nous allons réaliser un certain nombre de mesures sur notre banc de test, et notamment des mesures sur la puissance de sorties du convertisseur MPPT. Ces mesures seront réalisées à l’aide de la carte microcontrôleur à base de ESP32 crée pour la projet « Afficheur éolienne ». L’objectif sera, en plus de la caractérisation des cartes MPPT, la visibilité des mesures en temps réel via une interface web. Des pages web seront dont embarquées dans le microcontrôleur ESP32 et devrons être accessible via un PC ou un smartphone. 
+Ce projet a pour but la création d’un banc de test photovoltaïque pour la caractérisation de cartes MPPT (Maximum Power Point Tracking). La première carte est la carte LibreSolar open source. La seconde est une carte industrielle. Pour ce faire, nous allons réaliser un certain nombre de mesures sur notre banc de test, et notamment des mesures sur la puissance de sorties du convertisseur MPPT. Ces mesures seront réalisées à l’aide de la carte microcontrôleur à base de ESP32 crée pour la projet « Afficheur éolienne ». L’objectif sera, en plus de la caractérisation des cartes MPPT, la visibilité des mesures en temps réel via une interface web. Des pages web seront dont embarquées dans le microcontrôleur ESP32 et devrons être accessible via un PC ou un smartphone. 
 
 La figure suivante explique schématiquement la structuration du banc d’essai :
 
@@ -332,9 +332,9 @@ La figure suivante explique schématiquement la structuration du banc d’essai 
 
 ## Choix de la lampe
 
-Notre PRT consiste à tester et comparer deux MPPT : un Libre Solar en open source ainsi qu’un fait à compléter ici.
+Notre PRT consiste à tester et comparer deux MPPT : un Libre Solar en open source ainsi qu’un MPPT industriel.
 
-Ces derniers permettent de prendre la valeur maximale de puissance en sortie d’un panneau photovoltaïque, et ceux à tout instants. Pour procéder aux tests, nous allons utiliser un panneau salaire 100W que nous allons éclairer avec des lampes fournissant près de 1000W. 
+Ces derniers permettent de prendre la valeur maximale de puissance en sortie d’un panneau photovoltaïque, et ce, à tout instants. Pour procéder aux tests, nous utiliserons un panneau solaire 100W que nous éclairerons avec des lampes fournissant près de 1000W au total. 
 
 Le but étant de se rapprocher des conditions standards de test, il est très important de bien choisir les lampes d’éclairage pour reproduire au mieux la puissance fixer par les STC (standard test conditions), ainsi que le spectre lumineux du soleil.
 Nous allons dons vous présenter ici notre choix de lampe et les raisons de ce choix.
@@ -342,7 +342,7 @@ Nous allons dons vous présenter ici notre choix de lampe et les raisons de ce c
 Pour les tests à réaliser, nous avons choisit de prendre deux lampes halogènes de 400W chacune. En effet, nous voulons en sortie du panneau photovoltaïque 100W. Or, nous savons que ce dernier dispositif possède un rendement de près de 10%. Ainsi, deux lampes de 400W (800W au total) va nous permettre de nous rapprocher au maximum des 100W voulus.
 Nous avons fait le choix de prendre ce kit de lampe là (et non deux lampes de 500W chacune) car il est livré avec un trépied qui nous permettra d’ajuster facilement la distance source lumineuse – panneau photovoltaïque et d’ajuster l’angle d’impact de la lumière sur le panneau pour tester plusieurs plages de spectre.
 Aussi, le prix de ce dispositif (environ 50€) nous parait très correct.
-En ce qui concerne le type des lampes, ce sont des lampes halogènes. Nous avons fait le choix de prendre des lampes halogènes pour pouvoir avoir des lampes fournissant près de 400W et qui rentrent dans notre budget. De plus, le spectre d’une lampe halogène présente quasiment la même allure que celui du soleil en après-midi et en fin de journée. Il convient donc pour ces tests.
+En ce qui concerne le type des lampes, ce sont des lampes halogènes. Nous avons fait le choix de prendre des lampes halogènes pour avoir des lampes fournissant près de 400W et qui rentrent dans notre budget. De plus, le spectre d’une lampe halogène présente quasiment la même allure que le spectre du soleil en après-midi et en fin de journée. Il convient donc pour ces tests.
 
 ![](Images/spectre_2.PNG)
 
@@ -358,11 +358,11 @@ Les contraintes que nous avons pour le choix du panneau sont les suivantes :
 -	Prix le plus faible possible
 -	Fournisseurs : RS
  
-Afin de respecter ces trois contraintes nous avons choisi le panneau suivant à 146.2 euros HT :
+Afin de respecter ces trois contraintes nous avons choisi le panneau suivant à près de 146€ :
 
 https://fr.rs-online.com/web/p/panneaux-solaires/1881234/?fbclid=IwAR1PjmZR-h3LvUEhJExDubokRcnUdeqzKAehREmtDqtzwf_Se5cUT-zvQHs
 
-Il s’agit d’un panneau photovoltaïque monocristallin comportant 36 cellules et délivrant une puissance crète d’environ 100W. Ces caractéristiques principales sont résumé dans l’extrait de la datasheet suivant :
+Il s’agit d’un panneau photovoltaïque monocristallin comportant 36 cellules et délivrant une puissance crète d’environ 100W. Ses caractéristiques principales sont résumées dans l’extrait de la datasheet suivant :
 
 ![](Images/datasheetPV.PNG)
 
