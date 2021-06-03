@@ -437,7 +437,7 @@ Nous remarquons deux points à prendre en compte :
 
 Lors de notre premier dimensionnement, nous n'avions pas pris en compte de telles pertes dans les lampes halogènes, ce qui fausse la puissance de sortie. Pour corriger ce problème et avoir environ 100W en sortie, il nous faudrait environ 15 lampes 400W ! Ceci n'étant pas une solution valable au vue de notre budget initial d'environ 200€ que nous avions déjà dépensé pour nos différentes commandes. Il nous faudra donc nous contenter d'une faible puissance pour le moment. Un changement de technologie de lampe serait une piste d'amélioration pour ce projet mais le budget ne sera pas le même.
 
-## Utilisation de la carte MPPT
+## Utilisation de la carte 
 
 Afin de pouvoir utiliser le MPPT, il faut au préalable le flasher. En effet, il n'y a pas de code dessus au départ et il est indispensable de téléverser ce dernier dans la carte MPPT.
 Suivant la datasheet LibreSolar, le code à flasher a été fait/écrit en C/C++ et est téléchargeble depuis la page GitHub associée au MPPT 1210 HUS.
