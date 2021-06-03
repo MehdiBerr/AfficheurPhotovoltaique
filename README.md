@@ -437,10 +437,16 @@ Nous remarquons deux points à prendre en compte :
 
 Lors de notre premier dimensionnement, nous n'avions pas pris en compte de telles pertes dans les lampes halogènes, ce qui fausse la puissance de sortie. Pour corriger ce problème et avoir environ 100W en sortie, il nous faudrait environ 15 lampes 400W ! Ceci n'étant pas une solution valable au vue de notre budget initial d'environ 200€ que nous avions déjà dépensé pour nos différentes commandes. Il nous faudra donc nous contenter d'une faible puissance pour le moment. Un changement de technologie de lampe serait une piste d'amélioration pour ce projet mais le budget ne sera pas le même.
 
-## Utilisation de la carte 
+## Utilisation de la carte MPPT LibreSolar
 
-Afin de pouvoir utiliser le MPPT, il faut au préalable le flasher. En effet, il n'y a pas de code dessus au départ et il est indispensable de téléverser ce dernier dans la carte MPPT.
+LA carte MPPT est un système intelligent d'asservissement à base de hacheurs buck.
+
+Afin de pouvoir utiliser le MPPT, il faut que la carte soit flasher suivant le type de batterie que l'on connecte au MPPT. En effet, d'après la documentation de LibreSolar concernant le MPPT, la partie du code gérant la batterie est différent selon le type de batterie (par exemple batterie Lithium, batterie Plomb...). Au départ, le carte est flashée pour une batterie Pb (plomb), ce qui fait que l'on a pas eu à flasher la carte puisque nous utilisons une batterie Pb (plomb).
+
+Néanmoins,s'il nous fallait flasher la carte, voici comment se présente le processus de flashage : 
+
 Suivant la datasheet LibreSolar, le code à flasher a été fait/écrit en C/C++ et est téléchargeble depuis la page GitHub associée au MPPT 1210 HUS.
-Ainsi, il suffit de télécharger Visual Studio, un environnement de developpement, et de rajouter l'extension PlatformIO IDE pour pouvoir lire le code. 
+De ce fait, il est nécéssaire de télécharger Visual Studio, un environnement de developpement, et de rajouter l'extension PlatformIO IDE pour pouvoir compiler le code sur le micrcontroleur STM32 du MPPT. Aussi, une bibliothèque spécial zephyr est à télécharger pour assurer le bon fonctionnement du code dans la carte. 
+Au final, l'utilisation d'un J-link va nous permettre de transmettre le code depuis l'ordinateur jusqu'au STM32.
 
 ## Mise en réseau et gestion des données du banc de test
