@@ -450,3 +450,9 @@ De ce fait, il est nécéssaire de télécharger Visual Studio, un environnement
 Au final, l'utilisation d'un J-link va nous permettre de transmettre le code depuis l'ordinateur jusqu'au STM32.
 
 ## Mise en réseau et gestion des données du banc de test
+
+## Perspective d'amélioration
+
+- La carte developpée pour le projet éolienne n'inclut qu'une mesure de tension et de courant, il serait donc interéssant de refaire une nouvelle carte en intégrant un interfaçage capteur pour la mesure de la luminosité. 
+
+- La puissance délivrée par les lampes étaient très faible dû aux pertes et au très mauvais rendement des lampes halogènes, il serait donc interéssant de remplacer les lampes halogènes par d'autres lampes sur le banc de test.
