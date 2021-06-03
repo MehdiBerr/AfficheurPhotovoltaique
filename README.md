@@ -324,7 +324,7 @@ Adam Mezaber
 
 ## Introduction 
 
-Ce projet a pour but la création d’un banc de test photovoltaïque pour la caractérisation de cartes MPPT (Maximum Power Point Tracking). La première carte est la carte LibreSolar open source. La seconde est une carte industrielle. Pour ce faire, nous allons réaliser un certain nombre de mesures sur notre banc de test, et notamment des mesures sur la puissance de sorties du convertisseur MPPT. Ces mesures seront réalisées à l’aide de la carte microcontrôleur à base de ESP32 crée pour la projet « Afficheur éolienne ». L’objectif sera, en plus de la caractérisation des cartes MPPT, la visibilité des mesures en temps réel via une interface web. Des pages web seront dont embarquées dans le microcontrôleur ESP32 et devrons être accessible via un PC ou un smartphone. 
+Ce projet a pour but la création d’un banc de test photovoltaïque pour la caractérisation de cartes MPPT (Maximum Power Point Tracking). La première carte est la carte LibreSolar open source. La seconde est une carte industrielle. Pour ce faire, nous allons commander et récupérer un certains nombres de composants tels que des lampes, un panneau photovoltaique ou encore un capteur de luminosité que nous allons assembler pour obtenir au final une puissance de sortie maximale sur les MPPT. L'objectif sera, en plus de la réalisation du banc de test, la visibilité des mesuresdes courants-tensions-puissances en temps réelvia une interface web. Des pages web seront donc embarquées dans le microcontroleur ESP32 et devrons être accessible via un PC ou un smartphone. 
 
 La figure suivante explique schématiquement la structuration du banc d’essai :
 
