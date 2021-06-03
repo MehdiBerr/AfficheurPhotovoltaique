@@ -1,14 +1,8 @@
 <html>
 <head>
-<style>
-.justifier {
-  text-align: justify;
-  text-justify: inter-word;
-}
-</style>
 </head>
 <body>
-<div class="justifier">
+<div style="text-align: justify">
 
 # Afficheur éolienne et Banc de test Photovoltaïque
 
