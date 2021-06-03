@@ -1,9 +1,13 @@
+<html>
+<head>
 <style>
 .justifier {
   text-align: justify;
   text-justify: inter-word;
 }
 </style>
+</head>
+<body>
 <div class="justifier">
 
 # Afficheur éolienne et Banc de test Photovoltaïque
@@ -509,3 +513,5 @@ Une fois que le premier site fonctionnais en débarqué et que nous avons réali
 - La puissance délivrée par les lampes étaient très faible dû aux pertes et au très mauvais rendement des lampes halogènes, il serait donc interéssant de remplacer les lampes halogènes par d'autres lampes sur le banc de test.
 
 </div>
+</body>
+</html>
