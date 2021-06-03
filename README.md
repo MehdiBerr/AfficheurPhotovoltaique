@@ -1,3 +1,11 @@
+<style>
+.justifier {
+  text-align: justify;
+  text-justify: inter-word;
+}
+</style>
+<div class="justifier">
+
 # Afficheur éolienne et Banc de test Photovoltaïque
 
 
@@ -451,8 +459,53 @@ Au final, l'utilisation d'un J-link va nous permettre de transmettre le code dep
 
 ## Mise en réseau et gestion des données du banc de test
 
+L'objectif de la deuxième partie de notre projet est de pouvoir utiliser les données du banc photovoltaïque. A l'aide du banc de test décrit précédemment, nous souhaitons présenter des mesures de courant, de tension et de puissance en temps réel via une interface web. Pour cela, nous utilisons le microcontrôleur ESP32, sur lequel nous allons embarquer notre serveur web, également disponible via un smartphone ou d'autres appareils électroniques avec accès au wifi.
+<br/>
+
+### DISPOSITIFS UTILISÉS
+* ESP32
+(PHOTO)
+ESP32 est un système bon marché, efficace et extrêmement populaire qui vous permet de construire des appareils communiquant via WiFi et Bluetooth. Ce module est le successeur du système ESP8266. La nouvelle version est équipée d'un microcontrôleur plus efficace, grâce auquel elle s'inscrit encore mieux dans la tendance IoT. ESP32 est une puce SoC (System-on-a-chip). Ce système intègre les éléments nécessaires à la communication via WiFi et Bluetooth, ce qui le rend idéal pour la construction d'appareils Internet des objets relativement bon marché et économes en énergie. Le système est principalement équipé d'un capteur tactile, que nous utilisons pour simuler une mesure de la température de l'environnement.
+<br/>
+
+* MPPT
+(PHOTO)
+Ce contrôleur de charge est un tracker de point de puissance maximale (MPPT), qui s'adapte automatiquement sa tension d'entrée au panneau solaire connecté pour extraire autant de puissance que possible. La fonction MPPT ne peut être réalisée qu'à l'aide d'un convertisseur DC/DC, qui constitue la partie centrale de la charge PCB du contrôleur. Il peut être reconnu par le grand inducteur et la grande entrée et sortie électrolytiques condensateurs de filtrage.
+<br/>
+
+### MPPT
+En raison de la non-linéarité des caractéristiques I-U du panneau photovoltaïque, sa puissance maximale est obtenue lorsqu'il fonctionne au point d'inflexion. Pour que le panneau fonctionne à son point optimal, l'algorithme de suivi du point de puissance maximale (MPPT) doit être utilisé dans la structure de contrôle. L'objectif principal du suivi MPP est de maintenir le générateur photovoltaïque en fonctionnement au point d'inflexion I(U), quels que soient les changements de température et d'ensoleillement. En raison de l'ombrage partiel des panneaux solaires connectés en série, par exemple en raison de la couverture nuageuse, plusieurs points d'inflexion apparaissent sur la caractéristique I(U). Les méthodes MPPT conventionnelles ne convergent pas au point de puissance maximale globale dans des conditions PSC. La présence de plusieurs pics sur la caractéristique P(U) rend très difficile le suivi du point de fonctionnement optimal et nécessite l'utilisation d'un algorithme de contrôle qui distingue les points de puissance maximale globale et locale.
+
+* IMPLEMENTATION
+<br/>
+Lorsque la charge est directement connectée au panneau solaire, le point de fonctionnement du panneau sera rarement à la puissance maximale. L'impédance vue par le panneau détermine le point de fonctionnement du panneau solaire. De cette façon, en changeant l'impédance vue à travers le panneau, le point de fonctionnement peut être décalé vers le point de puissance crête. Étant donné que les panneaux sont des dispositifs CC, utilisez des convertisseurs CC à CC pour convertir l'impédance d'un circuit (source) en un autre circuit (charge). La modification du rapport cyclique du convertisseur DC-DC entraîne une modification de l'impédance vue par le panneau. À une certaine impédance (c'est-à-dire un cycle de service), le point de service sera le transfert de puissance de crête. La courbe du panneau IV peut varier considérablement en fonction des conditions météorologiques telles que l'irradiation et la température. Par conséquent, il n'est pas possible de déterminer le facteur de remplissage dans de telles conditions de travail changeant de manière dynamique.
+Les implémentations MPPT utilisent des algorithmes qui échantillonnent fréquemment les tensions et les courants du panneau, puis ajustent le cycle de service selon les besoins. Des microcontrôleurs sont utilisés pour implémenter les algorithmes.
+<br/>
+
+### SERVEUR WEB
+En plus de mesurer les paramètres, ils devaient être visualisés d'une manière ou d'une autre, c'est pourquoi nous avons créé à cet effet un serveur Web connecté au MPPT, à partir duquel il récupère les données et les présente en temps réel.
+* PREMIÈRE APPROCHE DE LA TÂCHE
+<br/>
+Au début de la création du site web, nous avons décider de travailler sur un site web débarqué que nous pourrions ensuite implanter sur microcontrôleur. Nous utilisions en même temps les langages HTML, CSS, PHP et JavaScript, en passant constamment des variables d'un langage à l'autre, afin de pouvoir à la fois récupérer des données (dans la première phase nous avons en fait généré des données à la main) et le présenter. Cependant, il s'est rapidement avéré que ce n'était pas la meilleure façon d'effectuer notre tâche et que le PHP n'était pas directement implantable sur microcontrôleur. Nous avons donc changé la méthode de fonctionnement. Malgré tout, nous avons aussi réussi à créer un site internet sur lequel nous avons saisi des données et avons pu les présenter.
+<br/>
+
+* DEUXIÈME APPROCHE DE LA TÂCHE
+<br/>
+Une fois que le premier site fonctionnais en débarqué et que nous avons réaliser que celui-ci ne pourrait pas être implanter sur microcontrôleur, nous avons décider de repartir de zéros avec une nouvelle façon de gérer les données et une nouvelle interface. La transition à pu être rapide grâce à la première expérience que nous avons eu avec le site en débarqué. Cette fois-ci la gestion de données s'est faite grâce au javascript et au langage d'arduino. Cette solution est celle que nous avons décider d'implanter sur microcontrôleur car celle-ci permettait de visualiser les données en temps réel avec un rafraichissement automatique. Cette méthode nous à aussi permis de sauver des données pour ensuite les afficher sous différents formats.
+<br/>
+
+## Création d'un site en débarqué
+
+<br/>
+
+## Création d'un site en embarqué
+
+<br/>
+
 ## Perspective d'amélioration
 
 - La carte developpée pour le projet éolienne n'inclut qu'une mesure de tension et de courant, il serait donc interéssant de refaire une nouvelle carte en intégrant un interfaçage capteur pour la mesure de la luminosité. 
 
 - La puissance délivrée par les lampes étaient très faible dû aux pertes et au très mauvais rendement des lampes halogènes, il serait donc interéssant de remplacer les lampes halogènes par d'autres lampes sur le banc de test.
+
+</div>
