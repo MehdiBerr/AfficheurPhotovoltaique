@@ -462,13 +462,17 @@ L'objectif de la deuxième partie de notre projet est de pouvoir utiliser les do
 
 ### DISPOSITIFS UTILISÉS
 * ESP32
-(PHOTO)
-ESP32 est un système bon marché, efficace et extrêmement populaire qui vous permet de construire des appareils communiquant via WiFi et Bluetooth. Ce module est le successeur du système ESP8266. La nouvelle version est équipée d'un microcontrôleur plus efficace, grâce auquel elle s'inscrit encore mieux dans la tendance IoT. ESP32 est une puce SoC (System-on-a-chip). Ce système intègre les éléments nécessaires à la communication via WiFi et Bluetooth, ce qui le rend idéal pour la construction d'appareils Internet des objets relativement bon marché et économes en énergie. Le système est principalement équipé d'un capteur tactile, que nous utilisons pour simuler une mesure de la température de l'environnement.
+<br/>
+L'ESP32 est un système bon marché, efficace et extrêmement populaire qui vous permet de construire des appareils communiquant via WiFi et Bluetooth. Ce module est le successeur du système ESP8266. La nouvelle version est équipée d'un microcontrôleur plus efficace, grâce auquel elle s'inscrit encore mieux dans la tendance IoT. ESP32 est une puce SoC (System-on-a-chip). Ce système intègre les éléments nécessaires à la communication via WiFi et Bluetooth, ce qui le rend idéal pour la construction d'appareils Internet des objets relativement bon marché et économes en énergie. Le système est principalement équipé d'un capteur tactile, que nous utilisons pour simuler une mesure de la température de l'environnement.
+
+![](Images/ESP32.jpg)
 <br/>
 
 * MPPT
-(PHOTO)
+<br/>
 Ce contrôleur de charge est un tracker de point de puissance maximale (MPPT), qui s'adapte automatiquement sa tension d'entrée au panneau solaire connecté pour extraire autant de puissance que possible. La fonction MPPT ne peut être réalisée qu'à l'aide d'un convertisseur DC/DC, qui constitue la partie centrale de la charge PCB du contrôleur. Il peut être reconnu par le grand inducteur et la grande entrée et sortie électrolytiques condensateurs de filtrage.
+
+![](Images/MPPT.jpg)
 <br/>
 
 ### MPPT
@@ -478,6 +482,8 @@ En raison de la non-linéarité des caractéristiques I-U du panneau photovolta�
 <br/>
 Lorsque la charge est directement connectée au panneau solaire, le point de fonctionnement du panneau sera rarement à la puissance maximale. L'impédance vue par le panneau détermine le point de fonctionnement du panneau solaire. De cette façon, en changeant l'impédance vue à travers le panneau, le point de fonctionnement peut être décalé vers le point de puissance crête. Étant donné que les panneaux sont des dispositifs CC, utilisez des convertisseurs CC à CC pour convertir l'impédance d'un circuit (source) en un autre circuit (charge). La modification du rapport cyclique du convertisseur DC-DC entraîne une modification de l'impédance vue par le panneau. À une certaine impédance (c'est-à-dire un cycle de service), le point de service sera le transfert de puissance de crête. La courbe du panneau IV peut varier considérablement en fonction des conditions météorologiques telles que l'irradiation et la température. Par conséquent, il n'est pas possible de déterminer le facteur de remplissage dans de telles conditions de travail changeant de manière dynamique.
 Les implémentations MPPT utilisent des algorithmes qui échantillonnent fréquemment les tensions et les courants du panneau, puis ajustent le cycle de service selon les besoins. Des microcontrôleurs sont utilisés pour implémenter les algorithmes.
+
+![](Images/PIV.png)
 <br/>
 
 ### SERVEUR WEB
