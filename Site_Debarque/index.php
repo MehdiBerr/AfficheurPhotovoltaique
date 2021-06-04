@@ -17,7 +17,7 @@
   </head>
   <body>
   <div id="menu">
-  <ul id="onglets">
+  <ul id="onglets" class='nav nav-pills'>
     <li class="active"><a href="index.php"> Accueil </a></li>
     <li><a href="EssaiTab.php"> Données </a></li>
     <li><a href="PagePRT7.php"> Ajouter un Donnée </a></li>
@@ -28,10 +28,10 @@
 	<div class='row'>
 		<div class='col-md-12'>
 			<h1>
-				h1. PRT7 Maquette WebServer
+				PRT7 Maquette WebServer
 			</h1>
 			<h3>
-				h3. Mesures panneau photovoltaïque<br><br>
+				Mesures panneau photovoltaïque<br><br>
 			</h3>
 			<ul class='nav nav-pills'>
 				<li class='nav-item'>

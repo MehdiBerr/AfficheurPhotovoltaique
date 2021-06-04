@@ -518,7 +518,11 @@ Une fois que le premier site fonctionnais en débarqué et que nous avons réali
 <br/>
 
 ## Création d'un site en débarqué
-
+Notre première approche à été de créer un site en débarqué pour ensuite l'implanter dans le microcontrôleur. Afin c'effectuer cette tâche, nous nous sommes d'abord renseignés sur les différentes façon de créer des sites web. Nous avons donc découvert les différents langages de programmation des sites web : html, javascript, css et php. Dans un premier temps nous avons essayer de comprendre l'intérêt de tous ces langages. Le langages html est le langages qui permet de gérer la structure de la page web. Le css est un langage permettant de gerer des objets graphiques statique. Le javascript est utiliser pour les animations et plus généralement pour la dynamique du site web. Enfin, le PHP est le langage permettant de gerer les données en dialoguant avec le serveur.
+<br/>
+Pour répondre au cahier des charges, le site web doit pouvoir afficher les valeurs envoyées par le microcontrôleur. Afin de gérer cet échange de données entre le serveur (microcontrôleur) et le site web, la solution qui nous est venue a été d'utiliser du PHP. C'est alors que grâce au logiciel MAMP nous avons créer un serveur avec un interpréteur PHP. Sur ce serveur nous avons donc coder des pages web en .php. Notre solution consistait à afficher des valeurs enregistrer au préalable dans un fichier .txt. Ce fichier .txt était remplis par un formulaire html dans lequel l'utilisateur peut entrer une donnée en x et en y.
+<br/>
+Notre site web devait donc comporter quatres pages pour être fonctionnel. Une page d'accueil
 <br/>
 
 ## Création d'un site en embarqué

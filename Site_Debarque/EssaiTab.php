@@ -43,7 +43,7 @@
               $tab1[$i-1] = $tab[$i][1]+0.0;
               //echo $tab1[$i-1]."<br/ >";
             }
-            
+
             $i++;
         }
 
@@ -55,7 +55,7 @@
 
   <body>
   <div id="menu">
-  <ul id="onglets">
+  <ul id="onglets" class='nav nav-pills'>
     <li class="active"><a href="index.php"> Accueil </a></li>
     <li><a href="EssaiTab.php"> Données </a></li>
     <li><a href="PagePRT7.php"> Ajouter un Donnée </a></li>
