@@ -529,14 +529,21 @@ Notre site web devait donc comporter 3 pages pour être fonctionnel, une page d'
 <br/>
 ![](Images/Site_debar.png)
 ![](Images/Graph_debar.PNG)
+<br/>
+<br/>
+Le site étant maintenant créer il ne nous manquait plus qu'a l'implanter sur microcontrôleur.
 
 
 ## Création d'un site en embarqué
-
+Nous nous sommes donc renseigné sur les différentes façon d'implanter des sites web sur microcontrôleur. De plus il fallait trouver une méthode pour gérer un serveur en embarqué. La méthode utilisée dans notre cas a été de gerer le serveur directement sur l'ESP32 en utilisant le langage arduino. Le code consiste donc à faire une recherche de reseau grâce aux informations écrites sur la carte puis effctuer des tentatives de connexions jusqu'au succès. Une fois connecté au reseau, le microcontrôleur envoie le site web sur le serveur. Le site est désormait accessible lorsque qu'un appareil est connecté sur le même reseau que le microcontrôleur à l'adresse 172.20.10.4.
+<br/>
+<br/>
+Afin de répondre au cahier des charges, nous avons créé une page web permettant de visualiser les données du microcontrôleur en temps réel avec un rafraichissement des valeurs toutes les secondes. L'acquisition des valeurs se fait par les PIN analogiques de l'ESP32 connectés sur le convertisseur analogique numérique. Cette valeur est récuperer par le serveur et placer dans diffrérents logs (tension, courant, température, luminosité, puissance). Ces logs sont enregistrés dans un objet json puis enregistrer dans un fichier json. L'objet json est un vecteur ou à chaque ajout d'une nouvelle valeur, la premiere valeur de l'objet json est supprimé, et cette nouvelle valeur est ajoutée en fin de chaîne. Le tableau de donnée est donc dit "circulaire". Le fichier json ainsi créer pour donc servir à afficher les données sous forme de tableau ou de graphique.
 <br/>
 
 ## Conclusion
 
+<br/>
 <br/>
 
 ## Perspective d'amélioration
